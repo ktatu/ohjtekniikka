@@ -1,11 +1,5 @@
-<h1> otsikko </h1>
-tekstiä tekstiä tekstiätekstiätekstiätekstiätekstiätekstiätekstiätekstiä
-*tekstiätekstiätekstiätekstiätekstiätekstiätekstiätekstiätekstiä*
-**tekstiätekstiätekstiätekstiätekstiätekstiätekstiätekstiätekstiä**
-*lista1
-*lista2
-*lista3
-
-http://github.com
-[GitHub](http://github.com)
-
+<h1>Ohjelmistotekniikka, harjoitustyö</h1>
+<h2>Tehtävät</h2>
+<h3>Viikko 1</h3>
+[gitlog.txt](https://github.com/ktatu/ohjtekniikka/blob/master/laskarit/viikko1/gitlog.txt)
+[komentorivi.txt](https://github.com/ktatu/ohjtekniikka/blob/master/laskarit/viikko1/komentorivi.txt)
