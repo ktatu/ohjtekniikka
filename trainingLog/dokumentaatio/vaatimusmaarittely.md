@@ -15,10 +15,10 @@ Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu. Uusi käyttäjä voi
 ### Etusivu (kirjautuminen)
 
 - Sisäänkirjautuminen etusivun lomakkeella
-  -Virheilmoitus jos tunnuksia ei löydy
+  - Virheilmoitus jos tunnuksia ei löydy
 
 - Uusien tunnusten luonti
-  -Uniikki
+  - Uniikki
 
 ### New Log
 
