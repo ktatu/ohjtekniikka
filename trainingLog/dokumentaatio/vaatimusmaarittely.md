@@ -8,7 +8,7 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan 
 
 Alustavasti sovellus koostuu viidestä eri näkymästä.
 
-<img src="https://raw.githubusercontent.com/ktatu/ohjtekniikka/master/trainingLog/dokumentaatio/kuvat/luonnoskuva1.png" width="750">
+<img src="https://raw.githubusercontent.com/ktatu/ohjtekniikka/master/trainingLog/dokumentaatio/kuvat/luonnoskuva1.jpg" width="750">
 
 Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu. Uusi käyttäjä voi luoda erillisellä sivulla uuden käyttäjätunnuksen. Varsinainen kirjautumisen jälkeinen sovellus koostuu kahdesta pääsivusta: "New Log" ja "History". (Huom! luonnoskuvissa "Stats", mutta se jääköön mahdolliseksi jatkokehitysideaksi.)
 
