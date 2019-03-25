@@ -26,7 +26,7 @@ Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu. Uusi käyttäjä voi
 
 - Käyttäjä voi luoda uuden treenilokin
   - Luotavaan lokiin käyttäjä kirjoittaa päivämäärän ja harjoitteet
-  - Harjoitteet ovat listana riveittäin. Kukin kohta koostuu nimestä ja tehdyistä sarjoista, jotka voi antaa vaikka muodossa paino x toistot. Esim. "Penkkipunnerrus: 50x10, 60x5, 70x3"
+  - Harjoitteet ovat riveittäin. Kukin kohta koostuu nimestä ja tehdyistä sarjoista, jotka voi antaa vaikka muodossa paino x toistot. Esim. "Penkkipunnerrus: 50x10, 60x5, 70x3"
 
 - Käyttäjä voi lisätä uusia harjoiterivejä lokiin nappia painamalla
 
