@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan harjoittelulokeilla, joista ilmenee harjoitteet, sarjat ja käytetyt painot / vastukset.
+Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan harjoittelulokeilla. Lokeista ilmenee harjoitteet, sarjat ja käytetyt painot / vastukset.
 
 ## Käyttöliittymäluonnos
 
