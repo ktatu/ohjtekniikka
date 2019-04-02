@@ -3,6 +3,7 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan.
 
 ## Dokumentaatio
 [Vaatimusmäärittely](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
 [Työaikakirjanpito](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ### Päivitys osa 3:
