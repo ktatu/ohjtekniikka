@@ -9,26 +9,40 @@ import trainingLog.dao.UserDao;
 
 public class TrainingLogService {
     private UserDao userDao;
-    private User user;
+    private String username;
     
     
     public TrainingLogService() {
         this.userDao = new UserDao();
     }
     
-    public boolean searchUser(String username, String password) {
-        if (userDao.search(username+","+password)) {
-            user = new User(username, password);
+    public boolean searchUser(String username) {
+        if (userDao.search(username)) {
+            this.username = username;
             return true;
         }
         return false;
     }
     
-    public boolean createUser(String username, String password) {
-        System.out.println("päästiin serviceen");
-        if (userDao.create(username+","+password)) {
-            return true;
+    public String createUser(String username, String password) {
+        if (!(validateUserInput(username, password))) {
+            return "All fields must be filled";
         }
-        return false;
+        if (userDao.create(username, password)) {
+            return "Registration succesful";
+        } else {
+            return "User already exists";
+        }
+    }
+    
+    public boolean testi() {
+        return true;
+    }
+    
+    public boolean validateUserInput(String username, String password) {
+        if (username.trim().equals("") || password.trim().equals("")) {
+            return false;
+        }
+        return true;
     }
 }

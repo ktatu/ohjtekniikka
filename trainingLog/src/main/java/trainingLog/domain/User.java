@@ -5,14 +5,14 @@
  */
 package trainingLog.domain;
 
+import java.util.Objects;
+
 
 public class User {
-    private int id;
     private String username;
     private String password;
     
     public User(int id, String username, String password) {
-        this.id = id;
         this.username = username;
         this.password = password;
     }
@@ -22,10 +22,6 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -33,6 +29,34 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        return true;
+    }
+
+
+    
     
     
     

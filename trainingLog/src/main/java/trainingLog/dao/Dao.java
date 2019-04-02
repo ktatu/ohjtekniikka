@@ -7,7 +7,7 @@ package trainingLog.dao;
 
 
 public interface Dao<T, K> {
-    boolean create(String userAsString);
-    boolean search(String objectAsString);
+    boolean create(String username, String password);
+    boolean search(String username);
     
 }

@@ -18,11 +18,22 @@ import trainingLog.domain.TrainingLogService;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.geometry.Insets;
+import javafx.scene.layout.HBox;
+
+/*
+            try (Connection con = DriverManager.getConnection("jdbc:h2:./database", "sa", "")) {
+                System.out.println("toimii");
+            } catch (SQLException ex) {
+                System.out.println("ei toimi");
+            }
+*/
 
 
 public class trainingLogUi extends Application {
     
-    private TrainingLogService trainingLogService;
+    private TrainingLogService trainingLogService = new TrainingLogService();
+    private LogScreen logScreen = new LogScreen();
 
 
     public static void main(String[] args) {
@@ -32,7 +43,7 @@ public class trainingLogUi extends Application {
     @Override
     public void start(Stage login) throws Exception {
         login.setTitle("trainingLog");
-        
+
         //login and registration
         GridPane userInfo = new GridPane();
         
@@ -40,6 +51,7 @@ public class trainingLogUi extends Application {
         TextField usernameField = new TextField();
         Label passwordLabel = new Label("Password:");
         PasswordField passwordField = new PasswordField();
+        Label systemFeedback = new Label("");
         
         Button loginButton = new Button("Login");
         Button regButton = new Button("Create new user");
@@ -49,36 +61,53 @@ public class trainingLogUi extends Application {
         userInfo.add(passwordLabel, 0, 1);
         userInfo.add(passwordField, 1, 1);
         userInfo.add(loginButton, 1, 3);
-        userInfo.add(regButton, 1, 5);
+        userInfo.add(regButton, 1, 4);
+        userInfo.add(systemFeedback, 1, 5);
         
         userInfo.setPrefSize(300, 200);
         userInfo.setAlignment(Pos.CENTER);
         userInfo.setVgap(5);
         userInfo.setHgap(5);
         
+        //main view: log and history
+        BorderPane mainView = new BorderPane();
+        
+        HBox topMenu = new HBox();
+        topMenu.setPadding(new Insets(20, 20, 20, 20));
+        topMenu.setSpacing(10);
+        
+        Button newLog = new Button("New Log");
+        Button history = new Button("History");
+        
+        topMenu.getChildren().addAll(newLog, history);
+        mainView.setTop(topMenu);
+        mainView.setCenter(logScreen.getLogView());
+        
+        //TODO: topMenu button actions
+        
+        //Scenes
+        Scene loginScene = new Scene(userInfo);
+        Scene mainScene = new Scene(mainView);
+        
+        //login screen actions
         loginButton.setOnAction((event) -> {
-            
-        });
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            if (trainingLogService.searchUser(username)) {
+                login.setScene(mainScene);
+            } else {
+                systemFeedback.setText("User not found");
+            }
+        });        
         regButton.setOnAction((event) -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
             
+            systemFeedback.setText(trainingLogService.createUser(username, password));
         });
         
-        
-        
-        
-        
-        
-        
-        
-        Scene loginScene = new Scene(userInfo);
         login.setScene(loginScene);
         login.show();
         
-        
-        
-        
     }
-    
 }
