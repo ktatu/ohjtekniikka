@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trainingLog.domain;
+package traininglog.domain;
 
-import trainingLog.dao.UserDao;
+import traininglog.dao.UserDao;
 
 public class TrainingLogService {
     private UserDao userDao;

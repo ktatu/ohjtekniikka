@@ -1,4 +1,4 @@
-package trainingLog.ui;
+package traininglog.ui;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import trainingLog.domain.TrainingLogService;
+import traininglog.domain.TrainingLogService;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,14 +30,20 @@ import javafx.scene.layout.HBox;
 */
 
 
-public class trainingLogUi extends Application {
+public class TrainingLogUi extends Application {
     
-    private TrainingLogService trainingLogService = new TrainingLogService();
-    private LogScreen logScreen = new LogScreen();
+    private TrainingLogService trainingLogService;
+    private LogScreen logScreen;
 
 
     public static void main(String[] args) {
-        launch(trainingLogUi.class);
+        launch(TrainingLogUi.class);
+    }
+    
+    @Override
+    public void init() {
+        trainingLogService = new TrainingLogService();
+        logScreen = new LogScreen();
     }
 
     @Override
@@ -71,8 +77,10 @@ public class trainingLogUi extends Application {
         
         //main view: log and history
         BorderPane mainView = new BorderPane();
+        mainView.setPrefSize(800, 400);
         
         HBox topMenu = new HBox();
+        topMenu.setStyle("-fx-background-color: #cc675f;");
         topMenu.setPadding(new Insets(20, 20, 20, 20));
         topMenu.setSpacing(10);
         

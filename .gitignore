@@ -3,4 +3,6 @@
 /trainingLog/target
 /trainingLog/nbproject/
 database.mv.db
-
+checkstyle.xml
+nbactions.xml
+skipped_files.xml

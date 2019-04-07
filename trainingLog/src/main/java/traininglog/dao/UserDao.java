@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trainingLog.dao;
+package traininglog.dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import trainingLog.domain.User;
+import traininglog.domain.User;
 
 public class UserDao implements Dao<User, Integer> {
 
@@ -26,7 +26,7 @@ public class UserDao implements Dao<User, Integer> {
         } else {
             try {
                 FileWriter writer = new FileWriter("users.txt", true);
-                writer.append(username+","+password);
+                writer.append(username + "," + password);
                 writer.append(System.getProperty("line.separator"));
                 writer.close();
                 return true;
@@ -38,7 +38,6 @@ public class UserDao implements Dao<User, Integer> {
 
     @Override
     public boolean search(String username) {
-        System.out.println(username);
         try {
             List<String> lines = Files.lines(Paths.get("users.txt")).collect(Collectors.toList());
             for (String line : lines) {
