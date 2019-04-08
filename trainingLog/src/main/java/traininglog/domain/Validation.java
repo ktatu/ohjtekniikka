@@ -5,6 +5,9 @@
  */
 package traininglog.domain;
 
+import java.util.ArrayList;
+import javafx.scene.control.TextField;
+
 /**
  *
  * @author ktatu
@@ -35,13 +38,43 @@ public class Validation {
         }
     }
     
-    public String validateWorkoutInput(String name, String sets) {
+    public String validateCreateUserInput(String username, String password) {
+        if (!(validateString(username).equals(""))) {
+            return validateString(username);
+        } else if (!(validateString(password).equals(""))) {
+            return validateString(password);
+        }
+        return "";
+    }
+    
+    public String validateExerciseInput(String name, String sets) {
         if (!(validateString(name).equals(""))) {
             return validateString(name);
         } else if (!(validateInteger(sets).equals(""))) {
             return validateInteger(sets);
         } else if (Integer.valueOf(sets) > 10) {
             return "No more than 10 sets per workout";
+        }
+        return "";
+    }
+    
+    public String validateLogInput(ArrayList<String> exerciseNames, ArrayList<ArrayList<TextField>> setData) {
+        for (String exercise : exerciseNames) {
+            String validation = validateString(exercise);
+            if (!(validation.equals(""))) {
+                return validation;
+            }
+        }
+        for (int i = 0; i < setData.size(); i++) {
+            ArrayList<TextField> data = setData.get(i);
+            if (data.get(0).getText().trim().equals("")) {
+                return "First set of every exercise must be filled";
+            }
+            for (TextField field : data) {
+                if (field.getText().length() > 7) {
+                    return "Please provide set input in form 'sets x repetitions' (ex. 5x10)";
+                }
+            }
         }
         return "";
     }

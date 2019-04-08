@@ -42,8 +42,6 @@ public class UserDao implements Dao<User, Integer> {
             List<String> lines = Files.lines(Paths.get("users.txt")).collect(Collectors.toList());
             for (String line : lines) {
                 String[] split = line.split(",");
-                System.out.println(split[0]);
-                System.out.println(split[1]);
                 if (split[0].equals(username)) {
                     return true;
                 }

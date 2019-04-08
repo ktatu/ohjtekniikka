@@ -5,6 +5,7 @@
  */
 package traininglog.ui;
 
+import java.util.ArrayList;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import traininglog.domain.TrainingLogService;
 import traininglog.domain.Validation;
 
 /**
@@ -22,6 +24,11 @@ import traininglog.domain.Validation;
 public class LogScreen {
     
     Validation validator = new Validation();
+    TrainingLogService trainingLogService = new TrainingLogService();
+    
+    // data stored for creating log
+    ArrayList<ArrayList<TextField>> setData;
+    ArrayList<String> exerciseNames;
     
     public Parent getLogView() {
         
@@ -29,9 +36,9 @@ public class LogScreen {
         logView.setAlignment(Pos.TOP_LEFT);
         logView.setHgap(30);
         
-        // adding new workout field to log
-        HBox addWorkout = new HBox();
-        addWorkout.setSpacing(5);
+        // adding new exercise field to log
+        HBox addExercise = new HBox();
+        addExercise.setSpacing(5);
         
         Label nameLabel = new Label("Workout:");
         TextField nameField = new TextField();
@@ -45,52 +52,70 @@ public class LogScreen {
         
         Label userFeedback = new Label("");
         
-        addWorkout.getChildren().addAll(nameLabel, nameField, setsLabel, setsField, add, createLog, userFeedback);
+        addExercise.getChildren().addAll(nameLabel, nameField, setsLabel, setsField, add, createLog, userFeedback);
         
-        
-        // node for adding workout fields and those that are added
-        VBox workouts = new VBox();
-        workouts.getChildren().add(addWorkout);
-        workouts.setSpacing(15);
+        // exercises = function for adding workouts and added fields
+        VBox exercises = new VBox();
+        exercises.getChildren().add(addExercise);
+        exercises.setSpacing(15);
         
         add.setOnAction((event) -> {
             String nameOfWorkout = nameField.getText();
             String numberOfSets = setsField.getText();
             
-            String validation = validator.validateWorkoutInput(nameOfWorkout, numberOfSets);
+            String validation = validator.validateExerciseInput(nameOfWorkout, numberOfSets);
             
             if (!(validation.equals(""))) {
                 userFeedback.setText(validation);
-            }
-            else {
-                workouts.getChildren().add(newWorkout(nameField.getText(), Integer.valueOf(setsField.getText())));
+            } else {
+                setData = new ArrayList<>();
+                exerciseNames = new ArrayList<>();
+                exerciseNames.add(nameField.getText());
+                
+                exercises.getChildren().add(newExercise(nameField.getText(), Integer.valueOf(setsField.getText())));
                 nameField.clear();
                 nameField.requestFocus();
+                userFeedback.setText("");
             }
         });
+        createLog.setOnAction((event) -> {
+            String outcome = trainingLogService.createLog(exerciseNames, setData);
+            if (outcome.equals("New log created")) {
+                exercises.getChildren().clear();
+                setData.clear();
+                exerciseNames.clear();
+                
+                exercises.getChildren().add(addExercise);
+            }
+            userFeedback.setText(outcome);
+        });
         
-        
-        logView.add(workouts, 0, 0);
-        
+        logView.add(exercises, 0, 0);
         
         return logView;
     }
     
     
-    public HBox newWorkout(String name, int sets) {
-        HBox workout = new HBox();
-        workout.setSpacing(10);
+    public HBox newExercise(String name, int sets) {
+        HBox exercise = new HBox();
+        exercise.setSpacing(10);
         
         Label nameOfWorkout = new Label(name);
         
-        Label setFields = new Label("Sets:");
-        workout.getChildren().addAll(nameOfWorkout, setFields);
+        Label setLabel = new Label("Sets:");
+        exercise.getChildren().addAll(nameOfWorkout, setLabel);
+        
+        ArrayList<TextField> setFields = new ArrayList<>();
         
         for (int i = 0; i < sets; i++) {
             TextField newField = new TextField();
+            setFields.add(newField);
             newField.setPrefWidth(70);
-            workout.getChildren().add(newField);
+            exercise.getChildren().add(newField);
         }
-        return workout;
+        
+        setData.add(setFields);
+        
+        return exercise;
     }
 }

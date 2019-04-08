@@ -5,15 +5,18 @@
  */
 package traininglog.domain;
 
+import java.util.ArrayList;
+import javafx.scene.control.TextField;
 import traininglog.dao.UserDao;
 
 public class TrainingLogService {
     private UserDao userDao;
     private String username;
-    
+    private Validation validator;
     
     public TrainingLogService() {
         this.userDao = new UserDao();
+        this.validator = new Validation();
     }
     
     public boolean searchUser(String username) {
@@ -25,8 +28,9 @@ public class TrainingLogService {
     }
     
     public String createUser(String username, String password) {
-        if (!(validateUserInput(username, password))) {
-            return "All fields must be filled";
+        String validation = validator.validateCreateUserInput(username, password);
+        if (!(validation.equals(""))) {
+            return validation;
         }
         if (userDao.create(username, password)) {
             return "Registration succesful";
@@ -35,14 +39,12 @@ public class TrainingLogService {
         }
     }
     
-    public boolean testi() {
-        return true;
-    }
-    
-    public boolean validateUserInput(String username, String password) {
-        if (username.trim().equals("") || password.trim().equals("")) {
-            return false;
+    public String createLog(ArrayList<String> exerciseNames, ArrayList<ArrayList<TextField>> setData) {
+        String validation = validator.validateLogInput(exerciseNames, setData);
+        if (!(validation.equals(""))) {
+            return validation;
         }
-        return true;
-    }
+        return "New log created";
+    } 
+    
 }

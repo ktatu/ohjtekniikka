@@ -84,15 +84,15 @@ public class ValidationTest {
     @Test
     public void workoutInputValidationReturnsCorrectMessages() {
         String testNumber = "50";
-        assertEquals("No more than 10 sets per workout", testValidator.validateWorkoutInput(testNumber, testNumber));
+        assertEquals("No more than 10 sets per workout", testValidator.validateExerciseInput(testNumber, testNumber));
         
         testNumber = "";
-        assertEquals("No input", testValidator.validateWorkoutInput(testNumber, testNumber));
+        assertEquals("No input", testValidator.validateExerciseInput(testNumber, testNumber));
         
         testNumber = "-20";
-        assertEquals("Positive integer required", testValidator.validateWorkoutInput(testNumber, testNumber));
+        assertEquals("Positive integer required", testValidator.validateExerciseInput(testNumber, testNumber));
         
         testNumber = "10";
-        assertEquals("", testValidator.validateWorkoutInput(testNumber, testNumber));
+        assertEquals("", testValidator.validateExerciseInput(testNumber, testNumber));
     }
 }
