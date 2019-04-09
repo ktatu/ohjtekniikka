@@ -16,8 +16,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
 
 /**
  *
@@ -81,12 +79,12 @@ public class UserDaoTest {
     
     @Test
     public void createNewUserWorks() {
-        assertFalse(testUserDao.create(testUsername, testPassword));
+        assertFalse(testUserDao.create(testUsername + " " + testPassword));
         
         String createName = ";\\8R[Wh3d$KnU[Z";
         String createPassword = "M,K+V<9h*27~ZS7";
         
         
-        assertTrue(testUserDao.create(createUserTestName, createUserTestPassword));
+        assertTrue(testUserDao.create(createUserTestName + " " + createUserTestPassword));
     }
 }

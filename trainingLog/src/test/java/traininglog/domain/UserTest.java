@@ -5,7 +5,6 @@
  */
 package traininglog.domain;
 
-import traininglog.domain.User;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +18,10 @@ import static org.junit.Assert.*;
  */
 public class UserTest {
     
+    User testUser;
+    
     public UserTest() {
+        testUser = new User("test", "password");
     }
     
     @BeforeClass
@@ -40,18 +42,26 @@ public class UserTest {
     
     @Test
     public void UsersNotSame() {
-        User test = new User("test", "user");
         User compareTo = new User("another", "user");
         
-        assertFalse(test.equals(compareTo));
+        assertFalse(testUser.equals(compareTo));
     }
     
     @Test
     public void UsersAreSame() {
-        User test = new User("test", "user");
-        User test2 = new User("test", "password");
+        User test = new User("test", "password");
         
-        assertTrue(test.equals(test2));
+        assertTrue(testUser.equals(test));
+    }
+    
+    @Test
+    public void getPasswordWorks() {
+        assertEquals("password", testUser.getPassword());
+    }
+    
+    @Test
+    public void getUsernameWorks() {
+        assertEquals("test", testUser.getUsername());
     }
 
     // TODO add test methods here.

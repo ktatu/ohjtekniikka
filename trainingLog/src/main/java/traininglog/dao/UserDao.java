@@ -17,10 +17,13 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import traininglog.domain.User;
 
-public class UserDao implements Dao<User, Integer> {
+public class UserDao implements Dao<String, Integer> {
 
     @Override
-    public boolean create(String username, String password) {
+    public boolean create(String newUser) {
+        String[] split = newUser.split(" ");
+        String username = split[0];
+        String password = split[1];
         if (search(username)) {
             return false;
         } else {
@@ -51,6 +54,7 @@ public class UserDao implements Dao<User, Integer> {
             return false;
         }
     }
+
 
     
 }

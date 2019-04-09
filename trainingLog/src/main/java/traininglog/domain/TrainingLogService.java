@@ -7,21 +7,24 @@ package traininglog.domain;
 
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
+import traininglog.dao.LogDao;
 import traininglog.dao.UserDao;
 
 public class TrainingLogService {
     private UserDao userDao;
-    private String username;
+    private LogDao logDao;
+    private String currentUser;
     private Validation validator;
     
     public TrainingLogService() {
         this.userDao = new UserDao();
+        this.logDao = new LogDao();
         this.validator = new Validation();
     }
     
     public boolean searchUser(String username) {
         if (userDao.search(username)) {
-            this.username = username;
+            this.currentUser = username;
             return true;
         }
         return false;
@@ -32,7 +35,7 @@ public class TrainingLogService {
         if (!(validation.equals(""))) {
             return validation;
         }
-        if (userDao.create(username, password)) {
+        if (userDao.create(username + " " + password)) {
             return "Registration succesful";
         } else {
             return "User already exists";
@@ -44,7 +47,37 @@ public class TrainingLogService {
         if (!(validation.equals(""))) {
             return validation;
         }
-        return "New log created";
+        
+        // formatting data for database: all data into string
+        String dataToString = "";
+        
+        int idx = 0;
+        while (idx < exerciseNames.size()) {
+            dataToString += exerciseNames.get(idx) + ":" + formatSetData(setData.get(idx)) + "\n";
+            idx++;
+        }
+        
+        Log log = new Log(this.currentUser, dataToString);
+        // WIP: log LogDaon createlle
+        return "";
     } 
+    
+    // assisting method for createLog
+    public String formatSetData(ArrayList<TextField> fieldList) {
+        String returnString = "";
+        if (fieldList.size() == 1) {
+            returnString += fieldList.get(0).getText() + ";";
+            return returnString;
+        }
+        
+        int idx = 0;
+        while (idx < fieldList.size() - 1) {
+            returnString += fieldList.get(idx).getText() + ",";
+            idx++;
+        }
+        returnString += fieldList.get(idx).getText() + ";";
+        
+        return returnString;
+    }
     
 }

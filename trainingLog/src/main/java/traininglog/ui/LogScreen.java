@@ -32,6 +32,9 @@ public class LogScreen {
     
     public Parent getLogView() {
         
+        setData = new ArrayList<>();
+        exerciseNames = new ArrayList<>();
+        
         GridPane logView = new GridPane();
         logView.setAlignment(Pos.TOP_LEFT);
         logView.setHgap(30);
@@ -68,8 +71,6 @@ public class LogScreen {
             if (!(validation.equals(""))) {
                 userFeedback.setText(validation);
             } else {
-                setData = new ArrayList<>();
-                exerciseNames = new ArrayList<>();
                 exerciseNames.add(nameField.getText());
                 
                 exercises.getChildren().add(newExercise(nameField.getText(), Integer.valueOf(setsField.getText())));
@@ -79,6 +80,13 @@ public class LogScreen {
             }
         });
         createLog.setOnAction((event) -> {
+            
+            for (ArrayList<TextField> setList : setData) {
+                for (TextField field : setList) {
+                //    System.out.println(field.getText());
+                }
+            }
+            
             String outcome = trainingLogService.createLog(exerciseNames, setData);
             if (outcome.equals("New log created")) {
                 exercises.getChildren().clear();
@@ -100,10 +108,10 @@ public class LogScreen {
         HBox exercise = new HBox();
         exercise.setSpacing(10);
         
-        Label nameOfWorkout = new Label(name);
+        Label nameOfExercise = new Label(name);
         
         Label setLabel = new Label("Sets:");
-        exercise.getChildren().addAll(nameOfWorkout, setLabel);
+        exercise.getChildren().addAll(nameOfExercise, setLabel);
         
         ArrayList<TextField> setFields = new ArrayList<>();
         
