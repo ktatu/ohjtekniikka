@@ -5,6 +5,8 @@
  */
 package traininglog.domain;
 
+import java.util.ArrayList;
+import javafx.scene.control.TextField;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -94,5 +96,50 @@ public class ValidationTest {
         
         testNumber = "10";
         assertEquals("", testValidator.validateExerciseInput(testNumber, testNumber));
+    }
+    
+    @Test
+    public void createUserInputValidationReturnsCorrectMessages() {
+        String username = "";
+        String password = "password";
+        assertEquals("No input", testValidator.validateCreateUserInput(username, password));
+        
+        username = "username";
+        password = "";
+        assertEquals("No input", testValidator.validateCreateUserInput(username, password));
+        
+        password = "password";
+        assertEquals("", testValidator.validateCreateUserInput(username, password));
+    }
+    
+    @Test
+    public void logInputValidationReturnsCorrectMessages() {
+        ArrayList<String> testExercises = new ArrayList<>();
+        testExercises.add("");
+        ArrayList<ArrayList<TextField>> testData = new ArrayList<>();
+        
+        assertEquals("No input", testValidator.validateLogInput(testExercises, testData));
+        
+        testExercises.clear();
+        testExercises.add("first");
+        
+        ArrayList<TextField> testList = new ArrayList<>();
+      
+    // Ei onnistu - ExceptionInInitializerError kun koittaa luoda TextFieldin
+    //    TextField testField = new TextField();
+    //    field.setText("");
+    //    testList.add(field);
+    //    testData.add(testList);
+        
+    //    testValidator.validateLogInput(testExercises, testData);
+        
+      //  assertEquals("First set of every exercise must be filled", testValidator.validateLogInput(testExercises, testData));
+        
+    /*    testData.clear();
+        testList.clear();
+        field.setText("11111111");
+        testList.add(field);
+        testData.add(testList);
+        assertEquals("Please provide set input in form 'sets x repetitions' (ex. 5x10)", testValidator.validateLogInput(testExercises, testData));*/
     }
 }

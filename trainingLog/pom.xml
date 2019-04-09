@@ -32,7 +32,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>traininglog/ui/**/*</exclude>
+                       <exclude>traininglog/ui/**/*</exclude> 
                     </excludes>
                 </configuration>
                 <executions>

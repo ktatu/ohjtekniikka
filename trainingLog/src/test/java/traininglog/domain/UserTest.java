@@ -50,8 +50,15 @@ public class UserTest {
     @Test
     public void UsersAreSame() {
         User test = new User("test", "password");
-        
         assertTrue(testUser.equals(test));
+        
+        assertTrue(testUser.equals(testUser));
+        
+        test = null;
+        assertFalse(testUser.equals(test));
+        
+        int testNumber = 1;
+        assertFalse(testUser.equals(testNumber));
     }
     
     @Test
