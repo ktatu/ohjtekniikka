@@ -7,18 +7,20 @@ package traininglog.domain;
 
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
+import traininglog.dao.SQLLogDao;
+import traininglog.dao.FileUserDao;
 import traininglog.dao.LogDao;
 import traininglog.dao.UserDao;
 
 public class TrainingLogService {
-    private UserDao userDao;
-    private LogDao logDao;
+    private FileUserDao userDao;
+//    private LogDao logDao;
     private String currentUser;
     private Validation validator;
     
     public TrainingLogService() {
-        this.userDao = new UserDao();
-        this.logDao = new LogDao();
+        this.userDao = new FileUserDao();
+    //    this.logDao = logDao;
         this.validator = new Validation();
     }
     

@@ -5,9 +5,11 @@
  */
 package traininglog.dao;
 
+/**
+ *
+ * @author ktatu
+ */
+public class SQLLogDao implements LogDao {
 
-public interface Dao<T, K> {
-    boolean create(T object);
-    boolean search(T object);
     
 }

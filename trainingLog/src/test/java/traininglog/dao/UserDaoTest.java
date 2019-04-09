@@ -25,7 +25,7 @@ public class UserDaoTest {
     
     String testUsername;
     String testPassword;
-    UserDao testUserDao;
+    FileUserDao testUserDao;
     
     String createUserTestName;
     String createUserTestPassword;
@@ -40,7 +40,7 @@ public class UserDaoTest {
     
     @Before
     public void setUp() throws IOException {
-        testUserDao = new UserDao();
+        testUserDao = new FileUserDao();
         testUsername = "P}#[6/g$g#yZ3bs";
         testPassword = "-QHkx<#@+g@f8E{";
         

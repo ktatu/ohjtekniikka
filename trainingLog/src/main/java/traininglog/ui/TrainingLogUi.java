@@ -20,6 +20,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
+import traininglog.dao.FileUserDao;
+import traininglog.dao.SQLLogDao;
 
 /*
             try (Connection con = DriverManager.getConnection("jdbc:h2:./database", "sa", "")) {
