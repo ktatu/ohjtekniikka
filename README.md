@@ -6,6 +6,8 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan.
 
 [Työaikakirjanpito](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+[Arkkitehtuuri](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/arkkitehtuuri.md)
+
 ### Päivitys osa 4:
 Uusien lokien luominen New Log-näkymässä "toimii", mutta tietoja ei vielä tallennu mihinkään. Alustavasti ideana olisi käyttää h2-tietokantaa tätä varten. Domainissa luokka Validation käyttäjäsyötteen varmennusta varten.
 
