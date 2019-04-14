@@ -14,14 +14,31 @@ import java.time.LocalDate;
  */
 public class Log {
     
-    private Date date;
+    private Date creationDate;
     private String username;
     private String data;
     
     public Log (String username, String data) {
         this.username = username;
         this.data = data;
-        this.date = Date.valueOf(LocalDate.now());
+        this.creationDate = Date.valueOf(LocalDate.now());
     }
     
+    public Log (Date creationDate, String username, String data) {
+        this.creationDate = creationDate;
+        this.username = username;
+        this.data = data;
+    }
+
+    public Date getDate() {
+        return creationDate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getData() {
+        return data;
+    }
 }

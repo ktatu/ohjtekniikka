@@ -23,23 +23,15 @@ import static org.junit.Assert.*;
  */
 public class UserDaoTest {
     
-    String testUsername;
-    String testPassword;
-    FileUserDao testUserDao;
+    static String testUsername;
+    static String testPassword;
+    static FileUserDao testUserDao;
     
-    String createUserTestName;
-    String createUserTestPassword;
+    static String createUserTestName;
+    static String createUserTestPassword;
     
     @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() throws IOException {
+    public static void setUpClass() throws IOException {
         testUserDao = new FileUserDao();
         testUsername = "P}#[6/g$g#yZ3bs";
         testPassword = "-QHkx<#@+g@f8E{";
@@ -52,12 +44,48 @@ public class UserDaoTest {
                 writer.append(System.getProperty("line.separator"));
                 writer.close();
         }
+    }
+    
+    @AfterClass
+    public static void tearDownClass() throws IOException {
+        File file = new File("users.txt");
+        File temp = new File("temp");
+        PrintWriter writer = new PrintWriter(new FileWriter(temp));
+        Files.lines(file.toPath())
+                .filter(line -> !line.contains(testUsername))
+                //jostain syystä pelkkä contains testUsername ei riittänyt, pitää kattoa kans salasana
+                .filter(line -> !line.contains(testPassword))
+                //trainingLogServiceTestistä
+                .filter(line -> !line.contains("zWG-_v>nTRdZ&2B%"))
+                .filter(line -> !line.contains("Z`B[$?+cq5Q`N8]e"))
+                .filter(line -> !line.contains(createUserTestName))
+                .filter(line -> !line.contains(createUserTestPassword))
+                .forEach(writer::println);
+        writer.flush();
+        writer.close();
+        temp.renameTo(file);
+    }
+    
+    @Before
+    public void setUp() throws IOException {
+/*        testUserDao = new FileUserDao();
+        testUsername = "P}#[6/g$g#yZ3bs";
+        testPassword = "-QHkx<#@+g@f8E{";
+        
+        createUserTestName = "\\8R[Wh3d$KnU[Z";
+        createUserTestPassword = "M,K+V<9h*27~ZS7";
+        
+        try (FileWriter writer = new FileWriter("users.txt", true)) {
+                writer.append(testUsername + "," + testPassword);
+                writer.append(System.getProperty("line.separator"));
+                writer.close();
+        }*/
         
     }
     
     @After
     public void tearDown() throws IOException {
-        File file = new File("users.txt");
+/*        File file = new File("users.txt");
         File temp = new File("temp");
         PrintWriter writer = new PrintWriter(new FileWriter(temp));
         Files.lines(file.toPath())
@@ -66,7 +94,7 @@ public class UserDaoTest {
                 .forEach(writer::println);
         writer.flush();
         writer.close();
-        temp.renameTo(file);
+        temp.renameTo(file);*/
     }
 
     @Test

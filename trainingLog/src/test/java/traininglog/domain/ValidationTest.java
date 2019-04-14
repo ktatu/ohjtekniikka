@@ -14,11 +14,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testfx.framework.junit.ApplicationTest;
 /**
  *
  * @author ktatu
  */
-public class ValidationTest {
+
+public class ValidationTest extends ApplicationTest {
     
     Validation testValidator;
     
@@ -125,21 +127,28 @@ public class ValidationTest {
         
         ArrayList<TextField> testList = new ArrayList<>();
       
-    // Ei onnistu - ExceptionInInitializerError kun koittaa luoda TextFieldin
-    //    TextField testField = new TextField();
-    //    field.setText("");
-    //    testList.add(field);
-    //    testData.add(testList);
+        TextField field = new TextField();
+        field.setText("");
+        testList.add(field);
+        testData.add(testList);
         
-    //    testValidator.validateLogInput(testExercises, testData);
+        testValidator.validateLogInput(testExercises, testData);
         
-      //  assertEquals("First set of every exercise must be filled", testValidator.validateLogInput(testExercises, testData));
+        assertEquals("First set of every exercise must be filled", testValidator.validateLogInput(testExercises, testData));
         
-    /*    testData.clear();
+        testData.clear();
         testList.clear();
         field.setText("11111111");
         testList.add(field);
         testData.add(testList);
-        assertEquals("Please provide set input in form 'sets x repetitions' (ex. 5x10)", testValidator.validateLogInput(testExercises, testData));*/
+        assertEquals("Please provide set input in form 'sets x repetitions' (ex. 5x10)", testValidator.validateLogInput(testExercises, testData));
+        
+        testData.clear();
+        testList.clear();
+        field.setText("5x10");
+        testList.add(field);
+        testData.add(testList);
+        assertEquals("", testValidator.validateLogInput(testExercises, testData));
+        
     }
 }

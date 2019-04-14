@@ -24,11 +24,16 @@ import traininglog.domain.Validation;
 public class LogScreen {
     
     Validation validator = new Validation();
-    TrainingLogService trainingLogService = new TrainingLogService();
+    TrainingLogService trainingLogService;
     
     // data stored for creating log
     ArrayList<ArrayList<TextField>> setData;
     ArrayList<String> exerciseNames;
+    
+    // trainingLogService created in TrainingLogUi given to LogScreen
+    public LogScreen(TrainingLogService trainingLogService) {
+        this.trainingLogService = trainingLogService;
+    }
     
     public Parent getLogView() {
         
@@ -54,6 +59,7 @@ public class LogScreen {
         Button createLog = new Button("Create log");
         
         Label userFeedback = new Label("");
+        userFeedback.setText("Only one log per day!");
         
         addExercise.getChildren().addAll(nameLabel, nameField, setsLabel, setsField, add, createLog, userFeedback);
         

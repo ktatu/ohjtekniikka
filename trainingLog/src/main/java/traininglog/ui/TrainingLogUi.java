@@ -45,7 +45,7 @@ public class TrainingLogUi extends Application {
     @Override
     public void init() {
         trainingLogService = new TrainingLogService();
-        logScreen = new LogScreen();
+        logScreen = new LogScreen(trainingLogService);
     }
 
     @Override

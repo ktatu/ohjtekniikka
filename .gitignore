@@ -2,7 +2,5 @@
 /laskarit/viikko2/Unicafe/nbproject/
 /trainingLog/target
 /trainingLog/nbproject/
-database.mv.db
-checkstyle.xml
+traininglog.trace.db
 nbactions.xml
-skipped_files.xml

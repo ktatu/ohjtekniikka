@@ -14,13 +14,13 @@ import traininglog.dao.UserDao;
 
 public class TrainingLogService {
     private FileUserDao userDao;
-//    private LogDao logDao;
+    private SQLLogDao logDao;
     private String currentUser;
     private Validation validator;
     
     public TrainingLogService() {
         this.userDao = new FileUserDao();
-    //    this.logDao = logDao;
+        this.logDao = new SQLLogDao();
         this.validator = new Validation();
     }
     
@@ -49,7 +49,6 @@ public class TrainingLogService {
         if (!(validation.equals(""))) {
             return validation;
         }
-        
         // formatting data for database: all data into string
         String dataToString = "";
         
@@ -61,7 +60,11 @@ public class TrainingLogService {
         
         Log log = new Log(this.currentUser, dataToString);
         // WIP: log LogDaon createlle
-        return "";
+        boolean createLog = logDao.createLog(log);
+        if (createLog) {
+            return "New log created";
+        }
+        return "Log not created";
     } 
     
     // assisting method for createLog

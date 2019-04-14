@@ -5,10 +5,15 @@
  */
 package traininglog.dao;
 
+import java.sql.Date;
+import java.sql.SQLException;
+import traininglog.domain.Log;
+
 /**
  *
  * @author ktatu
  */
 public interface LogDao {
-   
+    boolean createLog(Log log) throws Exception;
+    Log searchLog(String username, Date date);
 }
