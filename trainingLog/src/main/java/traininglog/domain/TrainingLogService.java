@@ -25,6 +25,7 @@ public class TrainingLogService {
         this.validator = new Validation();
     }
     
+    // TODO: pitäis varmaan ottaa se salasanakin huomioon
     public boolean searchUser(String username) {
         if (userDao.search(username)) {
             this.currentUser = username;
@@ -87,7 +88,6 @@ public class TrainingLogService {
     }
     
     public ArrayList<String> searchLog(Date date) {
-        
         if (validator.validateDate(date).equals("")) {
             return null;
         }

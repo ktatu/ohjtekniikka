@@ -5,6 +5,10 @@
  */
 package traininglog.domain;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
 import org.junit.After;
@@ -149,6 +153,16 @@ public class ValidationTest extends ApplicationTest {
         testList.add(field);
         testData.add(testList);
         assertEquals("", testValidator.validateLogInput(testExercises, testData));
+        
+    }
+    
+    @Test
+    public void dateValidationReturnsCorrectMessages() throws ParseException {
+        Date testDate =  Date.valueOf("2100-12-12");
+        
+        assertEquals("Please select a past date", testValidator.validateDate(testDate));
+        
+        assertEquals("", testValidator.validateDate(Date.valueOf(LocalDate.now())));
         
     }
 }

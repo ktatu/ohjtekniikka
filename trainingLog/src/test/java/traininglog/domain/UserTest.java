@@ -70,10 +70,4 @@ public class UserTest {
     public void getUsernameWorks() {
         assertEquals("test", testUser.getUsername());
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }
