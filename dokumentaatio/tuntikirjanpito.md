@@ -9,4 +9,5 @@
 | 07.4  | 3    | luokat LogScreen ja Validation, testejä |
 | 08.4  | 2    | "Create Log"-toiminnallisuus, validointi |
 | 15.4  | 2    | Tietokanta lokeille, testejä |
-Aika yhteensä: 14 h
+| 16.4  | 3    | History-näkymää, testejä, 1. sekvenssikaavio |
+Aika yhteensä: 17 h
