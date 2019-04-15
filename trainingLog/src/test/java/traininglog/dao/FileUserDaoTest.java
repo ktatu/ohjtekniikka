@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  *
  * @author ktatu
  */
-public class UserDaoTest {
+public class FileUserDaoTest {
     
     static String testUsername;
     static String testPassword;

@@ -18,13 +18,13 @@ public class Log {
     private String username;
     private String data;
     
-    public Log (String username, String data) {
+    public Log(String username, String data) {
         this.username = username;
         this.data = data;
         this.creationDate = Date.valueOf(LocalDate.now());
     }
     
-    public Log (Date creationDate, String username, String data) {
+    public Log(Date creationDate, String username, String data) {
         this.creationDate = creationDate;
         this.username = username;
         this.data = data;

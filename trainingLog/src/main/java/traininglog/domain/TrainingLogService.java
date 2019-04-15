@@ -5,6 +5,7 @@
  */
 package traininglog.domain;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
 import traininglog.dao.SQLLogDao;
@@ -83,6 +84,14 @@ public class TrainingLogService {
         returnString += fieldList.get(idx).getText() + ";";
         
         return returnString;
+    }
+    
+    public ArrayList<String> searchLog(Date date) {
+        
+        if (validator.validateDate(date).equals("")) {
+            return null;
+        }
+        return null;
     }
     
 }

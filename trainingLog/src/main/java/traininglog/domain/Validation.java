@@ -5,6 +5,8 @@
  */
 package traininglog.domain;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
 
@@ -75,6 +77,13 @@ public class Validation {
                     return "Please provide set input in form 'sets x repetitions' (ex. 5x10)";
                 }
             }
+        }
+        return "";
+    }
+    
+    public String validateDate(Date date) {
+        if (date.compareTo(Date.valueOf(LocalDate.now())) > 0) {
+            return "Please select a past date";
         }
         return "";
     }

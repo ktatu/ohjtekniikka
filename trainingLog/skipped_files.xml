@@ -7,4 +7,5 @@
 <suppressions>
     <suppress files="traininglog.ui.TrainingLogUi.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="traininglog.ui.LogScreen.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="traininglog.ui.HistoryScreen.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

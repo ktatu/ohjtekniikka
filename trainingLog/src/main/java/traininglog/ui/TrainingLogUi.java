@@ -36,6 +36,7 @@ public class TrainingLogUi extends Application {
     
     private TrainingLogService trainingLogService;
     private LogScreen logScreen;
+    private HistoryScreen historyScreen;
 
 
     public static void main(String[] args) {
@@ -46,11 +47,12 @@ public class TrainingLogUi extends Application {
     public void init() {
         trainingLogService = new TrainingLogService();
         logScreen = new LogScreen(trainingLogService);
+        historyScreen = new HistoryScreen(trainingLogService);
     }
 
     @Override
-    public void start(Stage login) throws Exception {
-        login.setTitle("trainingLog");
+    public void start(Stage main) throws Exception {
+        main.setTitle("trainingLog");
 
         //login and registration
         GridPane userInfo = new GridPane();
@@ -93,7 +95,14 @@ public class TrainingLogUi extends Application {
         mainView.setTop(topMenu);
         mainView.setCenter(logScreen.getLogView());
         
-        //TODO: topMenu button actions
+        //Buttons changing nodes 
+        history.setOnAction((event) -> {
+            mainView.setCenter(historyScreen.getHistoryView());
+        });
+        newLog.setOnAction((event) -> {
+            mainView.setCenter(logScreen.getLogView());
+        });
+        
         
         //Scenes
         Scene loginScene = new Scene(userInfo);
@@ -104,7 +113,7 @@ public class TrainingLogUi extends Application {
             String username = usernameField.getText();
             String password = passwordField.getText();
             if (trainingLogService.searchUser(username)) {
-                login.setScene(mainScene);
+                main.setScene(mainScene);
             } else {
                 systemFeedback.setText("User not found");
             }
@@ -116,8 +125,8 @@ public class TrainingLogUi extends Application {
             systemFeedback.setText(trainingLogService.createUser(username, password));
         });
         
-        login.setScene(loginScene);
-        login.show();
+        main.setScene(loginScene);
+        main.show();
         
     }
 }
