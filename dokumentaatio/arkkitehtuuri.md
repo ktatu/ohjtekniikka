@@ -16,3 +16,4 @@ Sovellukseen ensimmäisenä avautuvassa login-näkymässä käyttäjä voi sekä
 
 ![NewLog](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Uusi%20loki.png)
 
+<p>Käyttäjä antaa parametreina kullekin harjoitteelle nimen sekä sarjat ja painot ("setData") ja painaa "New Log"-nappia. TrainingLogService kutsuu Validationia harjoitteiden nimien validoimiseksi, jonka jälkeen harjoitedata formatoidaan merkkijonoksi tietokantaan tallennusta varten. Uusi Log-olio talletetaan SQLLogDaossa paikalliseen tietokantatiedostoon. SQLLogDao palauttaa TrainingLogServicelle totuusarvon true, ja tämä puolestaan palauttaa TrainingLogUi:lle viestin "New log created", joka ilmestyy näkymään.
