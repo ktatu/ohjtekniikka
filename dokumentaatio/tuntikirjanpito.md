@@ -10,5 +10,6 @@
 | 08.4  | 2    | "Create Log"-toiminnallisuus, validointi |
 | 15.4  | 2    | Tietokanta lokeille, testejä |
 | 16.4  | 3    | History-näkymää, testejä, 1. sekvenssikaavio |
+| 17.4  | 2    |2. sekvenssikaavio, 1. release |
 
-Aika yhteensä: 17 h
+Aika yhteensä: 19 h
