@@ -9,4 +9,4 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan.
 [Arkkitehtuuri](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ### Päivitys osa 5:
-Luodut lokit tallettuvat paikalliseen h2-tietokantatiedostoon. Huom! Käyttäjällä voi luoda vain yhden lokin per päivä.
+Luodut lokit tallettuvat paikalliseen h2-tietokantatiedostoon. Käyttäjä voi luoda vain yhden lokin per päivä.
