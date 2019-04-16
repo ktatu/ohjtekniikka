@@ -1,7 +1,7 @@
 # Arkkitehtuurikuvaus
 
 ## Luokkakaavio
-![Luokkakaavio](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Alustava%20luokkakaavio.png)
+![Luokkakaavio](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Luokkakaavio.png)
 
 ## Päätoiminnot
 ### Käyttäjätunnusten luonti
