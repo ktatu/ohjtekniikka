@@ -14,14 +14,14 @@ import traininglog.dao.LogDao;
 import traininglog.dao.UserDao;
 
 public class TrainingLogService {
-    private FileUserDao userDao;
-    private SQLLogDao logDao;
+    private UserDao userDao;
+    private LogDao logDao;
     private String currentUser;
     private Validation validator;
     
-    public TrainingLogService() {
-        this.userDao = new FileUserDao();
-        this.logDao = new SQLLogDao();
+    public TrainingLogService(UserDao userDao, LogDao logDao) {
+        this.userDao = userDao;
+        this.logDao = logDao;
         this.validator = new Validation();
     }
     
@@ -46,7 +46,7 @@ public class TrainingLogService {
         }
     }
     
-    public String createLog(ArrayList<String> exerciseNames, ArrayList<ArrayList<TextField>> setData) {
+    public String createLog(ArrayList<String> exerciseNames, ArrayList<ArrayList<TextField>> setData) throws Exception {
         String validation = validator.validateLogInput(exerciseNames, setData);
         if (!(validation.equals(""))) {
             return validation;
@@ -93,5 +93,4 @@ public class TrainingLogService {
         }
         return null;
     }
-    
 }

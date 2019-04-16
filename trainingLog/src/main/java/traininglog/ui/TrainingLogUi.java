@@ -45,7 +45,9 @@ public class TrainingLogUi extends Application {
     
     @Override
     public void init() {
-        trainingLogService = new TrainingLogService();
+        FileUserDao userDao = new FileUserDao();
+        SQLLogDao logDao = new SQLLogDao();
+        trainingLogService = new TrainingLogService(userDao, logDao);
         logScreen = new LogScreen(trainingLogService);
         historyScreen = new HistoryScreen(trainingLogService);
     }

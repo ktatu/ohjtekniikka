@@ -25,6 +25,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.testfx.framework.junit.ApplicationTest;
 import traininglog.dao.FileUserDao;
+import traininglog.dao.SQLLogDao;
 
 /**
  *
@@ -35,6 +36,7 @@ public class TrainingLogServiceTest extends ApplicationTest {
     TrainingLogService testTrainingLogService;
     Validation testValidator;
     FileUserDao userDao;
+    SQLLogDao logDao;
     
     static String createUsername;
     static String createPassword;
@@ -43,7 +45,9 @@ public class TrainingLogServiceTest extends ApplicationTest {
     static String testPassword;
     
     public TrainingLogServiceTest() {
-        this.testTrainingLogService = new TrainingLogService();
+        this.userDao = new FileUserDao();
+        this.logDao = new SQLLogDao();
+        this.testTrainingLogService = new TrainingLogService(userDao, logDao);
     }
     
     @BeforeClass

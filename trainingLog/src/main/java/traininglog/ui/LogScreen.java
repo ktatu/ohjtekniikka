@@ -86,13 +86,6 @@ public class LogScreen {
             }
         });
         createLog.setOnAction((event) -> {
-            
-            for (ArrayList<TextField> setList : setData) {
-                for (TextField field : setList) {
-                //    System.out.println(field.getText());
-                }
-            }
-            
             String outcome = trainingLogService.createLog(exerciseNames, setData);
             if (outcome.equals("New log created")) {
                 exercises.getChildren().clear();
