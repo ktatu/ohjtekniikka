@@ -5,15 +5,11 @@
  */
 package traininglog.dao;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import traininglog.domain.User;
 
@@ -24,7 +20,7 @@ public class FileUserDao implements UserDao {
         String[] split = newUser.split(" ");
         String username = split[0];
         String password = split[1];
-        if (search(username)) {
+        if (searchUsername(username)) {
             return false;
         } else {
             try {
@@ -39,8 +35,9 @@ public class FileUserDao implements UserDao {
         }
     }
 
+    // assisting method for create - to verify whether username is already in use
     @Override
-    public boolean search(String username) {
+    public boolean searchUsername(String username) {
         try {
             List<String> lines = Files.lines(Paths.get("users.txt")).collect(Collectors.toList());
             for (String line : lines) {
@@ -50,10 +47,29 @@ public class FileUserDao implements UserDao {
                 }
             }
             return false;
-        } catch (Exception e) {
+        } catch (IOException e) {
             return false;
         }
     }
+
+    // for login
+    @Override
+    public boolean searchUser(User user) {
+        try {
+            List<String> lines = Files.lines(Paths.get("users.txt")).collect(Collectors.toList());
+            for (String line : lines) {
+                String[] split = line.split(",");
+                if (split[0].equals(user.getUsername()) && split[1].equals(user.getPassword())) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+    
+    
 
 
     

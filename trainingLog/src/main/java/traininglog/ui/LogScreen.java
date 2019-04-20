@@ -86,7 +86,7 @@ public class LogScreen {
             }
         });
         createLog.setOnAction((event) -> {
-/*            String outcome = trainingLogService.createLog(exerciseNames, setData);
+            String outcome = trainingLogService.createLog(exerciseNames, setData);
             if (outcome.equals("New log created")) {
                 exercises.getChildren().clear();
                 setData.clear();
@@ -94,7 +94,7 @@ public class LogScreen {
                 
                 exercises.getChildren().add(addExercise);
             }
-            userFeedback.setText(outcome);*/
+            userFeedback.setText(outcome);
         });
         
         logView.add(exercises, 0, 0);

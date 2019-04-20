@@ -5,11 +5,13 @@
  */
 package traininglog.dao;
 
+import traininglog.domain.User;
+
 
 public interface UserDao {
     
     boolean create(String newUser);
-    
-    boolean search(String username); 
+    boolean searchUsername(String username);
+    boolean searchUser(User user);
     
 }

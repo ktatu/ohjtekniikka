@@ -97,7 +97,7 @@ public class TrainingLogUi extends Application {
         mainView.setTop(topMenu);
         mainView.setCenter(logScreen.getLogView());
         
-        //Buttons changing nodes 
+        //Buttons changing nodes for main view
         history.setOnAction((event) -> {
             mainView.setCenter(historyScreen.getHistoryView());
         });
@@ -114,7 +114,7 @@ public class TrainingLogUi extends Application {
         loginButton.setOnAction((event) -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
-            if (trainingLogService.searchUser(username)) {
+            if (trainingLogService.searchUser(username, password)) {
                 main.setScene(mainScene);
             } else {
                 systemFeedback.setText("User not found");
@@ -129,6 +129,5 @@ public class TrainingLogUi extends Application {
         
         main.setScene(loginScene);
         main.show();
-        
     }
 }

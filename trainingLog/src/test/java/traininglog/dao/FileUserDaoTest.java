@@ -99,10 +99,10 @@ public class FileUserDaoTest {
 
     @Test
     public void searchUsersWorks() {
-        assertTrue(testUserDao.search(testUsername));
+        assertTrue(testUserDao.searchUsername(testUsername));
         
         String searchName = "_7xW/zyJ!hJr;[R3";
-        assertFalse(testUserDao.search(searchName));
+        assertFalse(testUserDao.searchUsername(searchName));
     }
     
     @Test

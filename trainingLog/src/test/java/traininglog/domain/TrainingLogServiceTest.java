@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-import traininglog.dao.FileUserDaoTest;
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
 import org.junit.After;
