@@ -118,13 +118,13 @@ public class TrainingLogServiceTest extends ApplicationTest {
         
     }
     
-    @Test
+/*    @Test
     public void searchUserReturnsCorrectMessages() {
         assertTrue(testTrainingLogService.searchUser(testUsername));
         
         String notFound = "8+=AH@KyS!/Vjy*D";
         assertFalse(testTrainingLogService.searchUser(notFound));
-    }
+    }*/
     
     @Test
     public void createLogReturnsCorrectMessages() {
