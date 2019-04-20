@@ -91,16 +91,11 @@ public class TrainingLogService {
         return returnString;
     }
     
-    public ArrayList<String> searchLog(Date date) {
-        if (validator.validateDate(date).equals("")) {
-            return null;
-        }
-        
+    public ArrayList<String> searchLog(Date date) {        
         Log log = logDao.searchLog(currentUser, date);
-        if (log != null) {
-            return formatLogForUi(log);
-        }
-        return null;
+
+        System.out.println(log);
+        return formatLogForUi(log);
     }
     
     public ArrayList<String> formatLogForUi(Log log) {

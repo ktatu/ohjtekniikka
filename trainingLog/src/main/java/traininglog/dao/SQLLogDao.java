@@ -26,12 +26,11 @@ public class SQLLogDao implements LogDao {
     public boolean createLog(Log log) {
         
         if (searchLog(log.getUsername(), log.getDate()) == null) {
-            
             try {
                 Connection conn = DriverManager.getConnection("jdbc:h2:./traininglog", "sa", "");
 
                 PreparedStatement stmt = conn.prepareStatement("INSERT INTO Log (creationDate, username, data) VALUES (?, ?, ?)");
-                stmt.setDate(1, Date.valueOf(LocalDate.now()));
+                stmt.setDate(1, log.getDate());
                 stmt.setString(2, log.getUsername());
                 stmt.setString(3, log.getData());
 
@@ -40,6 +39,8 @@ public class SQLLogDao implements LogDao {
                 conn.close();
                 return true;
             } catch (SQLException ex) {
+                System.out.println("ex createLog");
+                System.out.println(ex);
                 return false;
             }
         } else {
@@ -49,7 +50,6 @@ public class SQLLogDao implements LogDao {
 
     @Override
     public Log searchLog(String username, Date creationDate) {
-        
         try {
             Connection conn = DriverManager.getConnection("jdbc:h2:./traininglog", "sa", "");
             
@@ -59,13 +59,23 @@ public class SQLLogDao implements LogDao {
             
             ResultSet rs = stmt.executeQuery();
             
-            Log log = new Log(rs.getDate("creationDate"), rs.getString("username"), rs.getString("data"));
+            Log log = new Log();
+            if (rs.next()) {
+                System.out.println("oli rs.next");
+                log.setCreationDate(rs.getDate("creationDate"));
+                log.setUsername(rs.getString("username"));
+                log.setData(rs.getString("data"));
+            }
             
             stmt.close();
             conn.close();
             
+            if (log.getUsername() == null) {
+                return null;
+            }
             return log;
         } catch (SQLException ex) {
+            System.out.println(ex);
             return null;
         }
     }

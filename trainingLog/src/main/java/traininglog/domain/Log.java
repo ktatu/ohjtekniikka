@@ -29,6 +29,8 @@ public class Log {
         this.username = username;
         this.data = data;
     }
+    public Log() {
+    }
 
     public Date getDate() {
         return creationDate;
@@ -41,4 +43,23 @@ public class Log {
     public String getData() {
         return data;
     }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return getDate() + " " + getUsername() + " " + getData() + " toString";
+    }
+    
+    
 }
