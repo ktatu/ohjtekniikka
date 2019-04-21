@@ -11,6 +11,10 @@ import javafx.scene.control.TextField;
 import traininglog.dao.LogDao;
 import traininglog.dao.UserDao;
 
+
+/**
+ * Sovelluslogiikasta vastaava luokka, toimii siltana Dao:jen ja käyttöliittymän välillä.
+ */
 public class TrainingLogService {
     private UserDao userDao;
     private LogDao logDao;
@@ -23,6 +27,12 @@ public class TrainingLogService {
         this.validator = new Validation();
     }
     
+    /**
+     * Kirjautuvan käyttäjän tunnusten etsintä.
+     * @param username Käyttäjätunnus.
+     * @param password Salasana.
+     * @return True jos tunnus löytyy tiedostosta, false jos ei.
+     */
     public boolean searchUser(String username, String password) {
         User loginUser = new User(username, password);
         
@@ -33,6 +43,13 @@ public class TrainingLogService {
         return false;
     }
     
+    /**
+     * Uuden käyttäjätunnuksen luominen.
+     * @param username Luotavan käyttäjätunnuksen nimi.
+     * @param password Luotavan käyttäjätunnuksen salasana.
+     * @return Validationista saadun viestin jos käyttäjänimi tai salasana on virheellisessä muodossa. 
+     * "Registration succesful" jos tunnusten luonti onnistui, "User already exists" jos username on jo käytössä.
+     */
     public String createUser(String username, String password) {
         String validation = validator.validateCreateUserInput(username, password);
         if (!(validation.equals(""))) {
@@ -45,35 +62,44 @@ public class TrainingLogService {
         }
     }
     
+    /**
+     * Uuden lokin tallettaminen tietokantatiedostoon.
+     * @param exerciseNames  Harjoitteiden nimet merkkijonolistana.
+     * @param setData   Lista, joka sisältää kuhunkin harjoitteeseen liittyvän syötteen listana. Jokaiselle exerciseNames-listan merkkijonolle on siis oma lista setDatassa.
+     * @return Validationista saadun viestin jos jotakin jommassa kummassa parametri-listassa on virheellisessä muodossa. 
+     * "Log created" jos createLog palauttaa true, "Log not created" jos palauttaa false tai tapahtuu virhe.
+     */
     public String createLog(ArrayList<String> exerciseNames, ArrayList<ArrayList<TextField>> setData) {
         String validation = validator.validateLogInput(exerciseNames, setData);
         if (!(validation.equals(""))) {
             return validation;
         }
-        // formatting data for database: all data into string
-        String dataToString = "";
         
+        String dataToString = "";
         int idx = 0;
         while (idx < exerciseNames.size()) {
             dataToString += exerciseNames.get(idx) + ":" + formatSetData(setData.get(idx));
             idx++;
         }
-        // exercise1:set1,set2,set3;exercise2:set1,set2;
+        
         
         Log log = new Log(this.currentUser, dataToString);
-        // WIP: log LogDaon createlle
         try { 
             boolean createLog = logDao.createLog(log);
             if (createLog) {
                 return "Log created";
             }
             return "Log not created";
-        } catch(java.lang.Exception e) {
+        } catch (java.lang.Exception e) {
             return "Log not created";
         }
     } 
     
-    // assisting method for createLog
+    /**
+     * Apumetodi createLogille, formatoi listoista saadun datan merkkijonoiksi.
+     * @param fieldList TextField-listassa oleva formatoitava data.
+     * @return Palauttaa listasta luodun merkkijonon.
+     */
     public String formatSetData(ArrayList<TextField> fieldList) {
         String returnString = "";
         if (fieldList.size() == 1) {
@@ -90,7 +116,11 @@ public class TrainingLogService {
         
         return returnString;
     }
-    
+    /**
+     * Lokin etsintä tietokantatiedostosta.
+     * @param date Etsittävän lokin luomispäivämäärä.
+     * @return Palauttaa apumetodin formatoiman merkkijonolistan.
+     */
     public ArrayList<String> searchLog(Date date) {        
         Log log = logDao.searchLog(currentUser, date);
 
@@ -98,6 +128,11 @@ public class TrainingLogService {
         return formatLogForUi(log);
     }
     
+    /**
+     * Apumetodi searchLogille, formatoi tietokantatiedostosta haetun Log-olion datan ui:ta varten.
+     * @param log Tietokantatiedostosta haettu loki.
+     * @return Palauttaa lokista saadun datan merkkijonolistana.
+     */
     public ArrayList<String> formatLogForUi(Log log) {
         ArrayList<String> formatted = new ArrayList<>();
         
@@ -106,7 +141,7 @@ public class TrainingLogService {
             String toList = "";
             String[] nameAndData = exercise.split(":");
             
-            toList += nameAndData[0]+": ";
+            toList += nameAndData[0] + ": ";
             toList += nameAndData[1].replaceAll(",", ", ");
             formatted.add(toList);
         }

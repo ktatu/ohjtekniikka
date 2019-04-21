@@ -58,4 +58,17 @@ public class LogTest {
     public void getDataWorks() {
         assertEquals("testData", testLog.getData());
     }
+    
+    @Test
+    public void setMethodsWork() {
+        
+        testLog.setCreationDate(Date.valueOf(LocalDate.now()));
+        assertEquals(Date.valueOf(LocalDate.now()), testLog.getDate());
+        
+        testLog.setUsername("testUsername");
+        assertEquals("testUsername", testLog.getUsername());
+        
+        testLog.setData("testdatatestdata");
+        assertEquals("testdatatestdata", testLog.getData());
+    }
 }

@@ -9,8 +9,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 /**
- *
- * @author ktatu
+ *  Lokeja kuvaava luokka, eli käyttäjän antamat harjoitesyötteet.
  */
 public class Log {
     
@@ -28,8 +27,6 @@ public class Log {
         this.creationDate = creationDate;
         this.username = username;
         this.data = data;
-    }
-    public Log() {
     }
 
     public Date getDate() {

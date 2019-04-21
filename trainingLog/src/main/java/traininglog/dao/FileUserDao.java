@@ -13,8 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import traininglog.domain.User;
 
+/**
+ * Käyttäjiin suoraan liittyvistä toiminnoista vastaava luokka. Käsittelee tekstitiedostoa "users.txt".
+ */
 public class FileUserDao implements UserDao {
 
+    /**
+     * Luo uuden käyttäjän.
+     * @param newUser Käyttäjänimi ja salasana yhdistettynä.
+     * @return True jos uusi käyttäjä luotiin, muutoin false.
+     */
     @Override
     public boolean create(String newUser) {
         String[] split = newUser.split(" ");
@@ -35,7 +43,11 @@ public class FileUserDao implements UserDao {
         }
     }
 
-    // assisting method for create - to verify whether username is already in use
+    /**
+     * Apumetodi createlle, tarkistaa onko käyttäjänimi jo käytössä.
+     * @param username Uuden käyttäjätunnuksen käyttäjänimi.
+     * @return True jos käyttäjänimi löytyi tekstitiedostosta, muutoin false.
+     */
     @Override
     public boolean searchUsername(String username) {
         try {
@@ -52,7 +64,11 @@ public class FileUserDao implements UserDao {
         }
     }
 
-    // for login
+    /**
+     * Etsii kirjautuvan käyttäjän antamaa nimeä ja salasanaa tekstitiedostosta.
+     * @param user User-olio kirjautuvasta käyttäjästä.
+     * @return True jos nimi käyttäjänimi ja salasana löytyvät, muutoin false.
+     */
     @Override
     public boolean searchUser(User user) {
         try {

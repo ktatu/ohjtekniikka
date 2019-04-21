@@ -23,15 +23,6 @@ import javafx.scene.layout.HBox;
 import traininglog.dao.FileUserDao;
 import traininglog.dao.SQLLogDao;
 
-/*
-            try (Connection con = DriverManager.getConnection("jdbc:h2:./database", "sa", "")) {
-                System.out.println("toimii");
-            } catch (SQLException ex) {
-                System.out.println("ei toimi");
-            }
-*/
-
-
 public class TrainingLogUi extends Application {
     
     private TrainingLogService trainingLogService;

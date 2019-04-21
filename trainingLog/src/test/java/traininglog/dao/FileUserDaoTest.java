@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import traininglog.domain.User;
 
 /**
  *
@@ -25,6 +26,9 @@ public class FileUserDaoTest {
     
     static String testUsername;
     static String testPassword;
+    
+    User testUser;
+    
     static FileUserDao testUserDao;
     
     static String createUserTestName;
@@ -98,7 +102,7 @@ public class FileUserDaoTest {
     }
 
     @Test
-    public void searchUsersWorks() {
+    public void searchUsernamesWorks() {
         assertTrue(testUserDao.searchUsername(testUsername));
         
         String searchName = "_7xW/zyJ!hJr;[R3";
@@ -109,10 +113,18 @@ public class FileUserDaoTest {
     public void createNewUserWorks() {
         assertFalse(testUserDao.create(testUsername + " " + testPassword));
         
-        String createName = ";\\8R[Wh3d$KnU[Z";
-        String createPassword = "M,K+V<9h*27~ZS7";
-        
-        
         assertTrue(testUserDao.create(createUserTestName + " " + createUserTestPassword));
+    }
+    
+    @Test
+    public void searchUsersWorks() {
+        testUser = new User(testUsername, testPassword);
+        
+        assertTrue(testUserDao.searchUser(testUser));
+        
+        String notInFileUsername = ";\\8R[Wh3d$KnU[Z";
+        String notInFilePassword = "M,K+V<9h*27~ZS7";
+        User notInFile = new User(notInFileUsername, notInFilePassword);
+        assertFalse(testUserDao.searchUser(notInFile));
     }
 }

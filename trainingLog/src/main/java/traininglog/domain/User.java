@@ -7,11 +7,13 @@ package traininglog.domain;
 
 import java.util.Objects;
 
-
+/**
+ * Käyttäjää kuvaava luokka
+ */
 public class User {
     private String username;
     private String password;
-        
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -25,6 +27,10 @@ public class User {
         return password;
     }
 
+    /**
+     * Hajautusarvo User-oliolle
+     * @return palauttaa hajautusarvon
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -32,6 +38,11 @@ public class User {
         return hash;
     }
 
+    /**
+     * Tarkistaa ovatko kaksi User-oliota "samat"
+     * @param obj Verrattava User-olio
+     * @return palauttaa true jos ovat, false jos eivät
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

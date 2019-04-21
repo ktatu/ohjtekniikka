@@ -11,6 +11,7 @@
 | 15.4  | 2    | Tietokanta lokeille, testejä |
 | 16.4  | 3    | History-näkymää, testejä, 1. sekvenssikaavio |
 | 17.4  | 2    | 2. sekvenssikaavio, 1. release |
-| 21.4  | 2    | History-näkymän hakutoiminto |
+| 20.4  | 2    | History-näkymän hakutoiminto |
+| 21.4  | 3    | Testejä, javaDoc |
 
-Aika yhteensä: 21 h
+Aika yhteensä: 24 h
