@@ -1,7 +1,7 @@
 # Arkkitehtuurikuvaus
 
 ## Sovelluslogiikka
-![Pakkauskaavio](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/pakkauskaavio.png)
+![Pakkauskaavio](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/package.png)
 
 ## Päätoiminnot
 ### Käyttäjätunnusten luonti
