@@ -14,5 +14,6 @@
 | 20.4  | 2    | History-näkymän hakutoiminto |
 | 21.4  | 3    | Testejä, javaDoc |
 | 22.4  | 1    | Pakkauskaavio, sekvenssikaavio |
+| 24.4  | 3    | Käyttöohje, komentorivikomennot, arkkitehtuuri, uusi release |
 
-Aika yhteensä: 25 h
+Aika yhteensä: 28 h
