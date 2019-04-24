@@ -29,8 +29,14 @@ Sovellukseen ensimmäisenä avautuvassa login-näkymässä käyttäjä voi sekä
 <p>"Create new user" -nappia painettaessa TrainingLogUi kutsuu TrainingLogServicen metodia createUser, parametreinaan login-näkymän tekstikenttiin syötetyt käyttäjätunnus ja salasana. Ennen käyttäjätunnusten luontia käyttäjäsyötteen oikeellisuus varmistetaan luokassa Validation.</p> 
 <p>Validoinnin jälkeen FileUserDaossa ensin haetaan käyttäjätunnusta, jonka jälkeen tunnus ja salasana kirjoitetaan tekstitiedostoon mikäli sitä ei ennestään löydy. Onnistunut käyttäjätunnusten luonti palauttaa TrainingLogServicelle totuusarvon true, joka puolestaan palauttaa TrainingLogUi:lle merkkijonon "Registration succesful", joka ilmestyy näkymään.</p>
 
-### Uusi loki
+### Uusi loki (New Log)
 Sisäänkirjautumisen jälkeisessä näkymässä käyttäjä voi luoda uuden lokin kyseiselle päivälle.
 ![NewLog](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Uusi%20loki.png)
 
-<p>Käyttäjä antaa parametreina kullekin harjoitteelle nimen sekä sarjat ja painot ("setData") ja painaa "New Log"-nappia. TrainingLogService kutsuu Validationia harjoitteiden nimien validoimiseksi, jonka jälkeen harjoitedata formatoidaan merkkijonoksi tietokantaan tallennusta varten. Uusi Log-olio talletetaan SQLLogDaossa paikalliseen tietokantatiedostoon. SQLLogDao palauttaa TrainingLogServicelle totuusarvon true, ja tämä puolestaan palauttaa TrainingLogUi:lle viestin "New log created", joka ilmestyy näkymään.
+<p>Käyttäjä antaa parametreina kullekin harjoitteelle nimen sekä sarjat ja painot ("setData") ja painaa "New Log"-nappia. TrainingLogService kutsuu Validationia harjoitteiden nimien validoimiseksi, jonka jälkeen harjoitedata formatoidaan merkkijonoksi tietokantaan tallennusta varten. Uusi Log-olio talletetaan SQLLogDaossa paikalliseen tietokantatiedostoon. SQLLogDao palauttaa TrainingLogServicelle totuusarvon true, ja tämä puolestaan palauttaa TrainingLogUi:lle viestin "New log created", joka ilmestyy näkymään.</p>
+ 
+### Lokin haku (History)
+Yläpalkin napista History avautuvassa näkymässä käyttäjä voi etsiä vanhoja lokejaan.
+![History](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Lokin%20haku%20(1).png)
+
+<p>Käyttäjä joko valitsee kalenterista tai kirjoittaa palkkiin päivämäärän ja painaa Search-nappia. Syötetty päivämäärä tarkistetaan suoraan Validation luokan validateDate-metodilla. TrainingLogServicessä kutsutaan LogDaon metodia searchLog-metodia, jonka parametri 'currentUser' saadaan TrainingLogServicen yksityisestä luokkamuuttujasta currentUser. LogDaossa tietokantatiedostosta löytyneestä rivistä luodaan uusi Log-olio, joka palautuu TrainingLogServicen searchLog-metodille. Apumetodi formatLogForUi tekee datasta merkkijonolistan joka palautuu ui:lle ja tulee näkyville.</p>
