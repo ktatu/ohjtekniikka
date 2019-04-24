@@ -29,6 +29,11 @@ Sovellukseen ensimmäisenä avautuvassa login-näkymässä käyttäjä voi sekä
 <p>"Create new user" -nappia painettaessa TrainingLogUi kutsuu TrainingLogServicen metodia createUser, parametreinaan login-näkymän tekstikenttiin syötetyt käyttäjätunnus ja salasana. Ennen käyttäjätunnusten luontia käyttäjäsyötteen oikeellisuus varmistetaan luokassa Validation.</p> 
 <p>Validoinnin jälkeen FileUserDaossa ensin haetaan käyttäjätunnusta, jonka jälkeen tunnus ja salasana kirjoitetaan tekstitiedostoon mikäli sitä ei ennestään löydy. Onnistunut käyttäjätunnusten luonti palauttaa TrainingLogServicelle totuusarvon true, joka puolestaan palauttaa TrainingLogUi:lle merkkijonon "Registration succesful", joka ilmestyy näkymään.</p>
 
+### Sisäänkirjautuminen
+![login](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Sis%C3%A4%C3%A4nkirjautuminen.png)
+
+<p>"Login" -nappia painettaessa Ui kutsuu TrainingLogServicen metodia searchUser parametreinaan login-näkymään syötetyt käyttäjänimi ja salasana. TrainingLogService luo syötteestä uuden User-olion ja kutsuu LogDaon searchUser-metodia. Käyttäjätunnuksen löytyessä searchUser palauttaa TrainingLogServiceen totuusarvon true. TrainingLogServicessä luokkamuuttujan currentUser arvoksi tulee parametrina annettu käyttäjänimi ja ui:lle palautuu true merkiksi tunnusten löytymisestä. Ui:ssa sceneksi vaihtuu mainScene, jossa on ensimmäisenä New Log-näkymä.</p>
+ 
 ### Uusi loki (New Log)
 Sisäänkirjautumisen jälkeisessä näkymässä käyttäjä voi luoda uuden lokin kyseiselle päivälle.
 ![NewLog](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Uusi%20loki.png)
