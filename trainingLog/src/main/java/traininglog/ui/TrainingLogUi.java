@@ -1,7 +1,5 @@
 package traininglog.ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,13 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import traininglog.domain.TrainingLogService;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import traininglog.dao.FileUserDao;
@@ -83,10 +77,15 @@ public class TrainingLogUi extends Application {
         
         Button newLog = new Button("New Log");
         Button history = new Button("History");
+        Button logout = new Button("Logout");
         
-        topMenu.getChildren().addAll(newLog, history);
+        topMenu.getChildren().addAll(newLog, history, logout);
         mainView.setTop(topMenu);
         mainView.setCenter(logScreen.getLogView());
+        
+        //Scenes
+        Scene loginScene = new Scene(userInfo);
+        Scene mainScene = new Scene(mainView);
         
         //Buttons changing nodes for main view
         history.setOnAction((event) -> {
@@ -95,17 +94,21 @@ public class TrainingLogUi extends Application {
         newLog.setOnAction((event) -> {
             mainView.setCenter(logScreen.getLogView());
         });
-        
-        
-        //Scenes
-        Scene loginScene = new Scene(userInfo);
-        Scene mainScene = new Scene(mainView);
+        logout.setOnAction((event) -> {
+            mainView.setCenter(logScreen.getLogView());
+            trainingLogService.logout();
+            main.setScene(loginScene);
+        });
         
         //login screen actions
         loginButton.setOnAction((event) -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
             if (trainingLogService.searchUser(username, password)) {
+                usernameField.clear();
+                passwordField.clear();
+                systemFeedback.setText("");
+                
                 main.setScene(mainScene);
             } else {
                 systemFeedback.setText("User not found");

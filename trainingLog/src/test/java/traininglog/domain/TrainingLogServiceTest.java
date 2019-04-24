@@ -19,7 +19,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.testfx.framework.junit.ApplicationTest;
@@ -89,12 +88,6 @@ public class TrainingLogServiceTest extends ApplicationTest {
     @After
     public void tearDown() throws IOException {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     @Test
     public void methodFormatSetDataFormatsDataCorrectly() {
@@ -114,20 +107,5 @@ public class TrainingLogServiceTest extends ApplicationTest {
         assertEquals("Registration succesful", testTrainingLogService.createUser(createUsername, createPassword));
         
         assertEquals("User already exists", testTrainingLogService.createUser(createUsername, createPassword));
-        
-        
-    }
-    
-/*    @Test
-    public void searchUserReturnsCorrectMessages() {
-        assertTrue(testTrainingLogService.searchUser(testUsername));
-        
-        String notFound = "8+=AH@KyS!/Vjy*D";
-        assertFalse(testTrainingLogService.searchUser(notFound));
-    }*/
-    
-    @Test
-    public void createLogReturnsCorrectMessages() {
-        
     }
 }

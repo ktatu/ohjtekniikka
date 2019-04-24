@@ -148,4 +148,11 @@ public class TrainingLogService {
         
         return formatted;
     }
+    
+    /**
+     * Uloskirjautuminen
+     */
+    public void logout() {
+        this.currentUser = null;
+    }
 }
