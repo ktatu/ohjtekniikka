@@ -13,5 +13,6 @@
 | 17.4  | 2    | 2. sekvenssikaavio, 1. release |
 | 20.4  | 2    | History-näkymän hakutoiminto |
 | 21.4  | 3    | Testejä, javaDoc |
+| 22.4  | 1    | Pakkauskaavio, sekvenssikaavio |
 
-Aika yhteensä: 24 h
+Aika yhteensä: 25 h
