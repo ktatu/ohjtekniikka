@@ -18,6 +18,7 @@ Ohjelma käynnistyy suoritushakemistossa, komentoriviltä komennolla java -jar t
 
 ## Uusi loki (New Log)
 <p>Sisäänkirjautumisen jälkeen ruudulle ilmestyy New Log-näkymä, jossa voit luoda uuden lokin. Yläpalkin napeista voit kuitenkin siirtyä History-näkymään tai kirjautua ulos.</p>
+<p>Sovelluksen on tarkoitus toimia treenaamisen päiväkirjana, joten käyttäjä voi vain yhden lokin per päivä.</p>
 <img src="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/kayttoohje-kuvat/newlog1.png">
 Harjoitteita voi lisätä yksitellen kirjoittamalla harjoitteen nimi ja tehtyjen sarjojen ("Number of sets") määrä, jonka jälkeen painetaan "Add"-nappia.
 
