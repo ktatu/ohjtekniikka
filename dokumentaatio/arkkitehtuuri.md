@@ -45,3 +45,26 @@ Yläpalkin napista History avautuvassa näkymässä käyttäjä voi etsiä vanho
 ![History](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/Lokin%20haku%20(1).png)
 
 <p>Käyttäjä joko valitsee kalenterista tai kirjoittaa palkkiin päivämäärän ja painaa Search-nappia. Syötetty päivämäärä tarkistetaan suoraan Validation luokan validateDate-metodilla. TrainingLogServicessä kutsutaan LogDaon metodia searchLog-metodia, jonka parametri 'currentUser' saadaan TrainingLogServicen yksityisestä luokkamuuttujasta currentUser. LogDaossa tietokantatiedostosta löytyneestä rivistä luodaan uusi Log-olio, joka palautuu TrainingLogServicen searchLog-metodille. Apumetodi formatLogForUi tekee datasta merkkijonolistan joka palautuu ui:lle ja tulee näkyville.</p>
+
+## Tietojen pysyväistalletus
+Talletuksesta vastaavat dao-paketin luokat SQLLogDao ja FileUserDao. SQLLogDao hyödyntää paikallista h2-tietokantatiedostoa ja FileUserDao paikallista tekstitiedostoa. Molempien tiedostojen nimet määritellään tiedostossa config.properties.
+
+Käytettävän h2-tietokantatiedoston voi itse halutessaan muuttaa config.properties-tiedostossa, mutta sovellus olettaa, että tietokannassa on taulu lokeille. Jos siis haluat käyttää omaa tiedostoasi, luo seuraava taulu:
+<pre>
+CREATE TABLE Log (creationDate DATE, username VARCHAR(30), data VARCHAR(150), 
+PRIMARY KEY (creationDate, username));
+</pre>
+
+Uutta lokia luodessa creationDate on aina senhetkinen päivämäärä ja käyttäjänimi sisäänkirjautunut käyttäjä. Tietokantaa varten harjoitteisiin liittyvä syötedata formatoidaan muotoon 
+<pre>
+harjoite1:sarja1;sarja2;sarja3;harjoite2:sarja1;sarja2;sarja3;
+</pre>
+Käytännön esimerkkinä tämä voisi siis olla vaikka 
+<pre>
+Kyykky:5x80;3:90:1x100;Pystypunnerrus:5x40:3x45;
+</pre>
+<br>
+Käyttäjätunnukset tallentuvat tekstitiedostoon muodossa
+<pre>
+kayttajanimi,salasana
+</pre>
