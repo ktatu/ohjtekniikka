@@ -11,7 +11,7 @@ Toteutuksen tasolla sovellus kuitenkin koostuu vain kahdesta eri scenestä, logi
 
 Sisäänkirjautuessa näkymänä on loginScene. Kirjautumisen jälkeen sceneksi vaihtuu mainScene, jolle on asetettu New Log-näkymän toteuttavan luokan LogScreenin node (Parent) getLogView. MainScenen nodet vaihtuvat yläpalkin napeilla New Log ja History. Takaisin loginSceneen pääsee napilla Logout.
 
-Käyttöliittymä on eriytetty täysin sovelluslogiikasta, eikä siihen sisälly muuta kuin käyttäjäsyötteen keräys ja näkymienn visuaalinen toteutus.
+Käyttöliittymä on eriytetty täysin sovelluslogiikasta, eikä siihen sisälly muuta kuin käyttäjäsyötteen keräys ja näkymien visuaalinen toteutus.
 
 ## Sovelluslogiikka
 ![Pakkauskaavio](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/package.png)
@@ -70,3 +70,8 @@ Käyttäjätunnukset tallentuvat tekstitiedostoon muodossa
 <pre>
 kayttajanimi,salasana
 </pre>
+
+## Sovelluksen heikkouksia
+- Tietokantaan liittyvä testaus hyödyntää sovelluksen varsinaista tietokantaa
+- Luokka User ja tämän dao UserDao eivät juurikaan hyödynnä toisiaan
+- Sovellus ei alusta itse tietokantatiedostoa
