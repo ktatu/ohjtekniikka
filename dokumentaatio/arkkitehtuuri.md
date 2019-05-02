@@ -49,7 +49,9 @@ Yläpalkin napista History avautuvassa näkymässä käyttäjä voi etsiä vanho
 ## Tietojen pysyväistalletus
 Talletuksesta vastaavat dao-paketin luokat SQLLogDao ja FileUserDao. SQLLogDao hyödyntää paikallista h2-tietokantatiedostoa ja FileUserDao paikallista tekstitiedostoa. Molempien tiedostojen nimet määritellään tiedostossa config.properties.
 
-Käytettävän h2-tietokantatiedoston voi itse halutessaan muuttaa config.properties-tiedostossa, mutta sovellus olettaa, että tietokannassa on taulu lokeille. Jos siis haluat käyttää omaa tiedostoasi, luo seuraava taulu:
+Käytettävän h2-tietokantatiedoston voi itse halutessaan muuttaa config.properties-tiedostossa. Muuttaessassi tietokantatiedostoa jätä tiedoston nimestä päätteet pois, esim. sovelluksen oletustietokanta ```traininglog.mv.db``` on config.properties-tiedostossa nimellä ```traininglog```.
+
+Sovellus olettaa, että tietokannassa on taulu lokeille. Jos siis haluat käyttää omaa tiedostoasi, luo seuraava taulu:
 <pre>
 CREATE TABLE Log (creationDate DATE, username VARCHAR(30), data VARCHAR(150), 
 PRIMARY KEY (creationDate, username));
