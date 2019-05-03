@@ -6,13 +6,14 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan 
 
 ## Käyttöliittymäluonnos
 
-Alustavasti sovellus koostuu viidestä eri näkymästä.
+Sovellus koostuu kolmesta eri näkymästä.
 
-<img src="https://raw.githubusercontent.com/ktatu/ohjtekniikka/master/dokumentaatio/kuvat/luonnoskuva1.jpg" width="750">
-<img src="https://raw.githubusercontent.com/ktatu/ohjtekniikka/master/dokumentaatio/kuvat/luonnoskuva2.jpg" width="750">
-Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu. Uusi käyttäjä voi luoda erillisellä sivulla uuden käyttäjätunnuksen. Varsinainen kirjautumisen jälkeinen sovellus koostuu kahdesta pääsivusta: "New Log" ja "History". (Huom! luonnoskuvissa "Stats", mutta se jääköön mahdolliseksi jatkokehitysideaksi.)
+<img src="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/loginnakyma.png">
+<img src="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/newlog.png">
+<img src="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/history.png">
+Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu, jossa voi myös luoda uuden käyttäjän. Varsinainen kirjautumisen jälkeinen sovellus koostuu kahdesta pääsivusta: "New Log" ja "History".
 
-## Perusversion toiminnallisuudet
+## Toiminnallisuudet
 
 ### Etusivu (kirjautuminen)
 
@@ -30,9 +31,9 @@ Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu. Uusi käyttäjä voi
 
 - Käyttäjä voi lisätä uusia harjoiterivejä lokiin nappia painamalla
 
-- Käyttäjä voi kirjautua ulos painamalla oikean yläkulman nappia "Logout"
+- Käyttäjä voi kirjautua ulos painamalla ylävalikon nappia "Logout"
 
-- Käyttäjä voi lisätä laatimansa lokin painamalla vasemman alakulman nappia "Add log"
+- Käyttäjä voi lisätä laatimansa lokin painamalla nappia "Create log"
 
 - Käyttäjä voi etsiä vanhoja harjoituslokejansa siirtymällä ylävalikosta välilehteen "History".
 
@@ -44,9 +45,9 @@ Sovelluksen käynnistyksen jälkeen aukeaa kirjautumissivu. Uusi käyttäjä voi
 - Etsitty loki tulostuu sivulle
   - Sivulle ilmestyy ilmoitus mikäli kyseiselle päivälle ei löydy lokia tietokannasta
 
-- Käyttäjä voi kirjautua ulos oikeasta yläkulmasta
+- Käyttäjä voi kirjautua ulos ylävalikon napista "Logout"
 
-- Käyttäjä voi palata "New Log" sivulle tämän välilehteä yläreunasta painamalla
+- Käyttäjä voi palata "New Log" sivulle ylävalikon napilla
 
 ## Jatkokehitysideoita
 
