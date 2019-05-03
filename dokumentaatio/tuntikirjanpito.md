@@ -15,5 +15,6 @@
 | 21.4  | 3    | Testejä, javaDoc |
 | 22.4  | 1    | Pakkauskaavio, sekvenssikaavio |
 | 24.4  | 3    | Käyttöohje, komentorivikomennot, arkkitehtuuri, uusi release |
+| 02.5  | 3    | Arkkitehtuuri, vaatimusmäärittely, testikorjauksia, properties.config |
 
-Aika yhteensä: 28 h
+Aika yhteensä: 31 h
