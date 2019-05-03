@@ -1,5 +1,7 @@
 package traininglog.ui;
 
+import java.io.FileInputStream;
+import java.util.Properties;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -29,9 +31,17 @@ public class TrainingLogUi extends Application {
     }
     
     @Override
-    public void init() {
-        FileUserDao userDao = new FileUserDao();
-        SQLLogDao logDao = new SQLLogDao();
+    public void init() throws Exception {
+        
+        Properties properties = new Properties();
+
+        properties.load(new FileInputStream("config.properties"));
+        
+        String userFile = properties.getProperty("userFile");
+        String logDatabase = properties.getProperty("logDatabase");
+        
+        FileUserDao userDao = new FileUserDao(userFile);
+        SQLLogDao logDao = new SQLLogDao(logDatabase);
         trainingLogService = new TrainingLogService(userDao, logDao);
         logScreen = new LogScreen(trainingLogService);
         historyScreen = new HistoryScreen(trainingLogService);

@@ -30,20 +30,24 @@ public class FileUserDaoTest {
     User testUser;
     
     static FileUserDao testUserDao;
+    static File fakeUsers;
     
     static String createUserTestName;
     static String createUserTestPassword;
     
     @BeforeClass
     public static void setUpClass() throws IOException {
-        testUserDao = new FileUserDao();
+        // UserDao-testausta varten luodaan tilapäinen tekstitiedosto
+        fakeUsers = new File("fakeUsers.txt");
+        
+        testUserDao = new FileUserDao("fakeUsers.txt");
         testUsername = "P}#[6/g$g#yZ3bs";
         testPassword = "-QHkx<#@+g@f8E{";
         
         createUserTestName = "\\8R[Wh3d$KnU[Z";
         createUserTestPassword = "M,K+V<9h*27~ZS7";
         
-        try (FileWriter writer = new FileWriter("users.txt", true)) {
+        try (FileWriter writer = new FileWriter(fakeUsers, true)) {
                 writer.append(testUsername + "," + testPassword);
                 writer.append(System.getProperty("line.separator"));
                 writer.close();
@@ -52,53 +56,16 @@ public class FileUserDaoTest {
     
     @AfterClass
     public static void tearDownClass() throws IOException {
-        File file = new File("users.txt");
-        File temp = new File("temp");
-        PrintWriter writer = new PrintWriter(new FileWriter(temp));
-        Files.lines(file.toPath())
-                .filter(line -> !line.contains(testUsername))
-                //jostain syystä pelkkä contains testUsername ei riittänyt, pitää kattoa kans salasana
-                .filter(line -> !line.contains(testPassword))
-                //trainingLogServiceTestistä
-                .filter(line -> !line.contains("zWG-_v>nTRdZ&2B%"))
-                .filter(line -> !line.contains("Z`B[$?+cq5Q`N8]e"))
-                .filter(line -> !line.contains(createUserTestName))
-                .filter(line -> !line.contains(createUserTestPassword))
-                .forEach(writer::println);
-        writer.flush();
-        writer.close();
-        temp.renameTo(file);
+        
+        fakeUsers.delete();
     }
     
     @Before
-    public void setUp() throws IOException {
-/*        testUserDao = new FileUserDao();
-        testUsername = "P}#[6/g$g#yZ3bs";
-        testPassword = "-QHkx<#@+g@f8E{";
-        
-        createUserTestName = "\\8R[Wh3d$KnU[Z";
-        createUserTestPassword = "M,K+V<9h*27~ZS7";
-        
-        try (FileWriter writer = new FileWriter("users.txt", true)) {
-                writer.append(testUsername + "," + testPassword);
-                writer.append(System.getProperty("line.separator"));
-                writer.close();
-        }*/
-        
+    public void setUp() {
     }
     
     @After
-    public void tearDown() throws IOException {
-/*        File file = new File("users.txt");
-        File temp = new File("temp");
-        PrintWriter writer = new PrintWriter(new FileWriter(temp));
-        Files.lines(file.toPath())
-                .filter(line -> !line.contains(testUsername))
-                .filter(line -> !line.contains(createUserTestName))
-                .forEach(writer::println);
-        writer.flush();
-        writer.close();
-        temp.renameTo(file);*/
+    public void tearDown() {
     }
 
     @Test

@@ -56,14 +56,19 @@ public class HistoryScreen {
                 } else {
                     ArrayList<String> formattedLog = trainingLogService.searchLog(Date.valueOf(datePicker.getValue()));
                     if (formattedLog == null) {
+                        userFeedback.setText(("Error in retrieving log"));
                     }   else {
+                        String[] dateToFormat = selected.toString().split("-");
+                        String dateToScreen = dateToFormat[2]+"."+dateToFormat[1]+"."+dateToFormat[0];
+                        
+                        exercises.getChildren().add(new Label(dateToScreen));
                         for (String lineInLog: formattedLog) {
                             exercises.getChildren().add(new Label(lineInLog));
                         }
                     }                    
                 }
             } catch (NullPointerException e) {
-                userFeedback.setText("Log could not be retrieved");
+                userFeedback.setText("No log for selected date");
             }
             
         });

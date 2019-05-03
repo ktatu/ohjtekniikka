@@ -5,6 +5,7 @@
  */
 package traininglog.dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -29,6 +30,11 @@ public class SQLLogDaoTest {
     Log testLog;
     String testUsername;
     
+    String database;
+    
+    File fakeDatabase;
+    File fakeTrace;
+    
     public SQLLogDaoTest() {
     }
     
@@ -42,39 +48,33 @@ public class SQLLogDaoTest {
     
     @Before
     public void setUp() {
-        this.testLogDao = new SQLLogDao();
+        
+        this.fakeDatabase = new File("testFile.mv.db");
+        this.fakeTrace = new File("testFile.trace.db");
+        
+        this.testLogDao = new SQLLogDao("testFile");
         this.testUsername = "Z84b5mJPQt4";
         this.testLog = new Log(Date.valueOf(LocalDate.now()), testUsername, "testdatatestdatatestdatatestdata");        
         
-    /*    try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:./traininglog", "sa", "");
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Log (creationDate, username, data) VALUES (?, ?, ?)");
-            stmt.setDate(1, testLog.getDate());
-            stmt.setString(2, testLog.getUsername());
-            stmt.setString(3, testLog.getData());
-
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:h2:./testFile", "sa", "");
+            
+            PreparedStatement stmt = conn.prepareStatement("CREATE TABLE Log (creationDate DATE, username VARCHAR(30), data VARCHAR(150),"
+                    + " PRIMARY KEY (creationDate, username));");
             stmt.executeUpdate();
+            System.out.println("onnistuu taulun teko");
             stmt.close();
             conn.close();
             } catch (SQLException ex) {
                 System.out.println(ex);
-            }*/
+            }
     }
     
     @After
     public void tearDown() {
-        try (Connection conn = DriverManager.getConnection("jdbc:h2:./traininglog", "sa", "")) {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Log WHERE username = ?");
-            stmt.setString(1, testUsername);
-            
-            stmt.executeUpdate();
-            stmt.close();
-            conn.close();
-            
-        } catch (Exception ex) {
-            System.out.println("failure");
-            System.out.println(ex);
-        }      
+          
+        this.fakeDatabase.delete();
+        this.fakeTrace.delete();
     }
     
     @Test
@@ -89,8 +89,8 @@ public class SQLLogDaoTest {
         Log retrievedLog = testLogDao.searchLog(testUsername, Date.valueOf(LocalDate.now()));
         System.out.println(retrievedLog);
         
-    //    assertEquals(retrievedLog.getDate(), testLog.getDate());
-    //    assertEquals(retrievedLog.getUsername(), testLog.getUsername());
-    //    assertEquals(retrievedLog.getData(), testLog.getData());
+        assertEquals(retrievedLog.getDate(), testLog.getDate());
+        assertEquals(retrievedLog.getUsername(), testLog.getUsername());
+        assertEquals(retrievedLog.getData(), testLog.getData());
     }
 }

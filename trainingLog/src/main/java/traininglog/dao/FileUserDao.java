@@ -17,6 +17,12 @@ import traininglog.domain.User;
  * Käyttäjiin suoraan liittyvistä toiminnoista vastaava luokka. Käsittelee tekstitiedostoa "users.txt".
  */
 public class FileUserDao implements UserDao {
+    
+    private String file;
+    
+    public FileUserDao(String file) {
+        this.file = file;
+    }
 
     /**
      * Luo uuden käyttäjän.
@@ -32,7 +38,7 @@ public class FileUserDao implements UserDao {
             return false;
         } else {
             try {
-                FileWriter writer = new FileWriter("users.txt", true);
+                FileWriter writer = new FileWriter(file, true);
                 writer.append(username + "," + password);
                 writer.append(System.getProperty("line.separator"));
                 writer.close();
@@ -51,7 +57,7 @@ public class FileUserDao implements UserDao {
     @Override
     public boolean searchUsername(String username) {
         try {
-            List<String> lines = Files.lines(Paths.get("users.txt")).collect(Collectors.toList());
+            List<String> lines = Files.lines(Paths.get(file)).collect(Collectors.toList());
             for (String line : lines) {
                 String[] split = line.split(",");
                 if (split[0].equals(username)) {
@@ -72,7 +78,7 @@ public class FileUserDao implements UserDao {
     @Override
     public boolean searchUser(User user) {
         try {
-            List<String> lines = Files.lines(Paths.get("users.txt")).collect(Collectors.toList());
+            List<String> lines = Files.lines(Paths.get(file)).collect(Collectors.toList());
             for (String line : lines) {
                 String[] split = line.split(",");
                 if (split[0].equals(user.getUsername()) && split[1].equals(user.getPassword())) {

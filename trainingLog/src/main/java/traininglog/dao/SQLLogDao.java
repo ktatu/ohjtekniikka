@@ -22,6 +22,13 @@ import traininglog.domain.Log;
  */
 public class SQLLogDao implements LogDao {
     
+    private String database;
+    
+    public SQLLogDao(String database) {
+        this.database = database;
+    }
+    
+    
     /**
      * Tallettaa uuden lokin tietokantatiedostoon.
      * @param log Talletettava loki.
@@ -31,7 +38,7 @@ public class SQLLogDao implements LogDao {
     public boolean createLog(Log log) {
         if (searchLog(log.getUsername(), log.getDate()) == null) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:h2:./traininglog", "sa", "");
+                Connection conn = DriverManager.getConnection("jdbc:h2:./"+database, "sa", "");
                 PreparedStatement stmt = conn.prepareStatement("INSERT INTO Log (creationDate, username, data) VALUES (?, ?, ?)");
                 stmt.setDate(1, log.getDate());
                 stmt.setString(2, log.getUsername());
@@ -58,7 +65,7 @@ public class SQLLogDao implements LogDao {
     @Override
     public Log searchLog(String username, Date creationDate) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:./traininglog", "sa", "");
+            Connection conn = DriverManager.getConnection("jdbc:h2:./"+database, "sa", "");
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Log WHERE username = ? AND creationDate = ?");
             stmt.setString(1, username);
             stmt.setDate(2, creationDate);
