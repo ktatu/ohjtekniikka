@@ -10,6 +10,8 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan.
 
 [Arkkitehtuuri](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/testaus.md)
+
 ## Releaset
 [Viikko 5](https://github.com/ktatu/ohjtekniikka/releases/tag/viikko5)
 
