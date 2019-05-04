@@ -16,5 +16,6 @@
 | 22.4  | 1    | Pakkauskaavio, sekvenssikaavio |
 | 24.4  | 3    | Käyttöohje, komentorivikomennot, arkkitehtuuri, uusi release |
 | 02.5  | 3    | Arkkitehtuuri, vaatimusmäärittely, testikorjauksia, properties.config |
+| 04.5  | 4    | Testejä, FakeDaot, testausdokumentti |
 
-Aika yhteensä: 31 h
+Aika yhteensä: 35 h
