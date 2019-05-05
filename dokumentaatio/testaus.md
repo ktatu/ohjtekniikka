@@ -32,6 +32,13 @@ Testikattavuusraportissa punaiselle jäivät:
   
 ## Järjestelmätestaus
 
+Järjestelmätestaus toteutettu manuaalisesti
+
+## Asennus ja konfigurointi
+
+Sovellusta on testattu Linux- ja Windows-ympäristöissä <a href="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kayttoohje.md">käyttöohjeiden</a> mukaisesti asennettuna.
+
+Sovellus ei alusta itse tietokantatiedostoa, joten testauksessakin on hyödynnetty valmista tietokantaa.
 
 ## Ongelmat
 
