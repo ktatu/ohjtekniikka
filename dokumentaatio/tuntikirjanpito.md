@@ -17,5 +17,6 @@
 | 24.4  | 3    | Käyttöohje, komentorivikomennot, arkkitehtuuri, uusi release |
 | 02.5  | 3    | Arkkitehtuuri, vaatimusmäärittely, testikorjauksia, properties.config |
 | 04.5  | 4    | Testejä, FakeDaot, testausdokumentti |
+| 05.5  | 4    | Dokumentaation ja testien viimeistely |
 
-Aika yhteensä: 35 h
+Aika yhteensä: 39 h
