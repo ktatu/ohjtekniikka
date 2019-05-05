@@ -72,6 +72,6 @@ kayttajanimi,salasana
 </pre>
 
 ## Sovelluksen heikkouksia
-- Tietokantaan liittyvä testaus hyödyntää sovelluksen varsinaista tietokantaa
+- Rivejä voi lisätä New Log-näkymässä niin paljon että osa jää pois näkyvistä. Sovelluksen ruutua voi tosin itse laajentaa
 - Luokka User ja tämän dao UserDao eivät juurikaan hyödynnä toisiaan
 - Sovellus ei alusta itse tietokantatiedostoa
