@@ -17,6 +17,8 @@ Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan.
 
 [Viikko 6](https://github.com/ktatu/ohjtekniikka/releases/tag/viikko6)
 
+[Viikko 7 - loppupalautus](https://github.com/ktatu/ohjtekniikka/releases/tag/viikko7)
+
 ## Komentoriviltä suoritettavat komennot
 
 Kaikki komennot tulee suorittaa kansiossa trainingLog.
