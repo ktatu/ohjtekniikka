@@ -1,0 +1,3 @@
+/**
+ * Käyttäjien ja lokien pysyväistalletus
+ */
