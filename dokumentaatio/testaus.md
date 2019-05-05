@@ -12,7 +12,7 @@ TrainingLogService hyödyntää luokkaa Validation käyttäjäsyötteen validoim
 
 ### DAO-luokat
 
-DAO-paketin luokkien testaus tapahtuu tilapäistiedostoilla, jotka alustetaan ennen testien suoritusta ja poistetaan niiden päätyttyä. FileUserDaoTestissä luodaan tekstitiedosto ja SQLLogDaoTestissä .mv-db -päätteinen h2-tietokantatiedosto, aivan kuten varsinaisessa sovelluksessakin.
+DAO-paketin luokkien testaus tapahtuu tilapäistiedostoilla, jotka alustetaan ennen testien suoritusta ja poistetaan niiden päätyttyä. FileUserDaoTestissä luodaan tekstitiedosto ja SQLLogDaoTestissä .mv.db -päätteinen h2-tietokantatiedosto, aivan kuten varsinaisessa sovelluksessakin.
 
 ## Testikattavuus
 
