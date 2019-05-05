@@ -12,6 +12,8 @@ Java-versiot joilla .jar on testatusti toiminut:
 - <a href="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/kayttoohje-kuvat/windowsjava.png">Windows 10</a>
 - <a href="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/kayttoohje-kuvat/ubuntujava1.png">Fuksiläppäri Ubuntu 18.04</a>
 
+Kurssin keskivaiheilla projekti lakkasi toimimasta täysin oletusalusta openjdk 8:lla ja <a href="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/platform.png">platformiksi</a> piti vaihtaa Oraclen java 8. .jarin tai .zippinä ladatun sovelluksen toiminta muilla versioilla ei siis ole taattu.
+
 ## Ohjelman käynnistys
 
 Ohjelma käynnistyy suoritushakemistossa, komentoriviltä komennolla java -jar trainingLogApp.jar
