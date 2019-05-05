@@ -40,6 +40,6 @@ Sovellusta on testattu Linux- ja Windows-ympäristöissä <a href="https://githu
 
 Sovellus ei alusta itse tietokantatiedostoa, joten testauksessakin on hyödynnetty valmista tietokantaa.
 
-## Ongelmat
+## Testausongelmat
 
 - dao-luokan searchLog-metodin automatisoitu testaus ei onnistunut. Kun metodin piti palauttaa tietokantatiedostosta haetun datan perusteella luotu Loki-olio niin palautukseksi tuli aina null, vaikka oikea rivi oli löytynyt ja Loki-olio luotu. Lokin toString SQLLogDaossa kuitenkin tulosti sen mitä pitikin
