@@ -2,7 +2,7 @@
 
 Lataa uusimman [releasen](https://github.com/ktatu/ohjtekniikka/releases/tag/viikko7) tiedostot trainingLogApp.jar, config.properties sekä traininglog.mv.db ja sijoita ne kaikki samaan suoritushakemistoon.
 
-Sovellusta voi Linux-ympäristön lisäksi käyttää myös Windowsilla, esim. <a href="https://gitforwindows.org/">tämän</a> avulla Bashista tuttujen komentojen käyttäminen sujuu helposti.
+Sovellusta voi Linux-ympäristön lisäksi käyttää myös Windowsilla, esim. <a href="https://gitforwindows.org/">tämän</a> avulla voit käyttää Bashista tuttuja komentoja.
 
 ## Konfigurointi
 
