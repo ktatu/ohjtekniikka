@@ -37,7 +37,7 @@ public class TrainingLogService {
         User loginUser = new User(username, password);
         
         if (userDao.searchUser(loginUser)) {
-            this.currentUser = username;
+            loginUser(username);
             return true;
         }
         return false;
@@ -76,10 +76,8 @@ public class TrainingLogService {
         }
         
         String dataToString = "";
-        int idx = 0;
-        while (idx < exerciseNames.size()) {
-            dataToString += exerciseNames.get(idx) + ":" + formatSetData(setData.get(idx));
-            idx++;
+        for (int i = 0; i < exerciseNames.size(); i++) {
+            dataToString += exerciseNames.get(i) + ":" + formatSetData(setData.get(i));
         }
         
         
@@ -123,8 +121,6 @@ public class TrainingLogService {
      */
     public ArrayList<String> searchLog(Date date) {        
         Log log = logDao.searchLog(currentUser, date);
-
-        System.out.println(log);
         return formatLogForUi(log);
     }
     
@@ -155,4 +151,13 @@ public class TrainingLogService {
     public void logout() {
         this.currentUser = null;
     }
+    
+    /**
+     * Käyttäjän sisäänkirjautuminen sovellukseen
+     * @param username Sisäänkirjautuva käyttäjä
+     */
+    public void loginUser(String username) {
+        this.currentUser = username;
+    }
+    
 }

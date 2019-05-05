@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import traininglog.domain.User;
 
 /**
- * Käyttäjiin suoraan liittyvistä toiminnoista vastaava luokka. Käsittelee tekstitiedostoa "users.txt".
+ * Käyttäjiin suoraan liittyvistä toiminnoista vastaava luokka. Käsittelee config.properties-tiedostossa määriteltyä tekstitiedostoa.
  */
 public class FileUserDao implements UserDao {
     
@@ -90,9 +90,4 @@ public class FileUserDao implements UserDao {
             return false;
         }
     }
-    
-    
-
-
-    
 }

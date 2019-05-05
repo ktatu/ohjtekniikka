@@ -6,7 +6,6 @@
 package traininglog.dao;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import traininglog.domain.Log;
 
 /**

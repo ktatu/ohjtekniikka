@@ -25,6 +25,7 @@ public class HistoryScreen {
     TrainingLogService trainingLogService;
     Validation validator;
     
+    // HistoryScreenille annetaan parametreina main-luokassa luotu trainingLogService sekä Validation-luokka pvm-testausta varten
     public HistoryScreen(TrainingLogService trainingLogService) {
         this.trainingLogService = trainingLogService;
         this.validator = new Validation();
@@ -36,6 +37,7 @@ public class HistoryScreen {
         HBox searchLog = new HBox();
         VBox exercises = new VBox();
         
+        // hakutoiminnon komponentit
         DatePicker datePicker = new DatePicker();
         Label dateLabel = new Label("Select date: (dd/mm/yyyy)");
         Button search = new Button("Search");
@@ -44,11 +46,10 @@ public class HistoryScreen {
         searchLog.getChildren().addAll(dateLabel, datePicker, search, userFeedback);
         historyView.getChildren().addAll(searchLog, exercises);
         
-        
+        //palautetaan loki-olio tai null Search-napin painalluksella
         search.setOnAction((event) -> {
             try {
                 Date selected = Date.valueOf(datePicker.getValue());
-                System.out.println(selected);
                 String validation = validator.validateDate(selected);
                 
                 if (!validation.equals("")) {
@@ -89,5 +90,4 @@ public class HistoryScreen {
         
         return historyView;
     }
-    
 }

@@ -6,10 +6,9 @@
 package traininglog.domain;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.scene.control.TextField;
 import org.junit.After;
@@ -22,8 +21,6 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.testfx.framework.junit.ApplicationTest;
-import traininglog.dao.FileUserDao;
-import traininglog.dao.SQLLogDao;
 
 /**
  *
@@ -33,58 +30,42 @@ public class TrainingLogServiceTest extends ApplicationTest {
     
     TrainingLogService testTrainingLogService;
     Validation testValidator;
-    FileUserDao userDao;
-    SQLLogDao logDao;
+    FakeUserDao userDao;
+    FakeLogDao logDao;
     
-    static String createUsername;
-    static String createPassword;
+    static ArrayList<ArrayList<TextField>> testSetData;
     
-    static String testUsername;
-    static String testPassword;
+    String testUsername;
+    String testPassword;
     
-    File fakeUsers;
+    static File fakeUsers;
+    static File testFile;
+    static File testTrace;
     
     public TrainingLogServiceTest() {
         
-        fakeUsers = new File("fakeUsers");
+        testUsername = "testUser";
+        testPassword = "testPassword";
         
-        this.userDao = new FileUserDao("fakeUsers.txt");
         
+        // tilapäistiedostot jotka poistetaan testien päätyttyä
+        fakeUsers = new File("fakeUsers.txt");
+        testFile = new File("testFile.mv.db");
+        testTrace = new File("testFile.trace.db");
         
-        this.logDao = new SQLLogDao("testFile.mv.db");
+        this.userDao = new FakeUserDao();
+        this.logDao = new FakeLogDao();
+        
         this.testTrainingLogService = new TrainingLogService(userDao, logDao);
+        
     }
     
     @BeforeClass
-    public static void setUpClass() throws IOException {
-        createUsername = "zWG-_v>nTRdZ&2B%";
-        createPassword = "Z`B[$?+cq5Q`N8]e";
-        
-        testUsername = "^?}$Np.=:^Dk7Z5E";
-        testPassword = "PQy}C,QNN9reLnW{";
-        
-        try (FileWriter writer = new FileWriter("users.txt", true)) {
-                writer.append(testUsername + "," + testPassword);
-                writer.append(System.getProperty("line.separator"));
-                writer.close();
-        }        
+    public static void setUpClass() {                
     }
     
     @AfterClass
-    public static void tearDownClass() throws IOException {
-        File file = new File("users.txt");
-        File temp = new File("temp");
-        PrintWriter writer = new PrintWriter(new FileWriter(temp));
-        Files.lines(file.toPath())
-                .filter(line -> !line.contains(testUsername))
-                //jostain syystä pelkkä contains testUsername ei riittänyt, pitää kattoa kans salasana
-                .filter(line -> !line.contains(testPassword))
-                .filter(line -> !line.contains(createUsername))
-                .filter(line -> !line.contains(createPassword))
-                .forEach(writer::println);
-        writer.flush();
-        writer.close();
-        temp.renameTo(file);
+    public static void tearDownClass() {
     }
     
     @Before
@@ -95,7 +76,7 @@ public class TrainingLogServiceTest extends ApplicationTest {
     public void tearDown() throws IOException {
     }
     
-/*    @Test
+    @Test
     public void methodFormatSetDataFormatsDataCorrectly() {
         ArrayList<TextField> testList = new ArrayList<>();
         TextField testField = new TextField();
@@ -110,8 +91,98 @@ public class TrainingLogServiceTest extends ApplicationTest {
         String testPassword1 = "";
         assertThat(testTrainingLogService.createUser(testUsername1, testPassword1), not (""));
         
-        assertEquals("Registration succesful", testTrainingLogService.createUser(createUsername, createPassword));
+        assertEquals("Registration succesful", testTrainingLogService.createUser(testUsername, testPassword));
         
-        assertEquals("User already exists", testTrainingLogService.createUser(createUsername, createPassword));
-    }*/
+        assertEquals("User already exists", testTrainingLogService.createUser(testUsername, testPassword));
+        
+    }
+    
+    @Test
+    public void searchUserFindsUserIfExists() {
+        
+        assertTrue(testTrainingLogService.searchUser("searchUsername", "searchUserPassword"));
+        
+        assertFalse(testTrainingLogService.searchUser("Lf>dyr3TS]U/p?@", "x9.]c+P<nRSJ5+:"));
+        
+        assertFalse(testTrainingLogService.searchUser("", ""));
+    }
+    
+    // TextFieldien luominen ei onnistu testimetodien ulkopuolella
+    @Test
+    public void createLogReturnsCorrectMessages() {
+        
+        ArrayList<String> testExercises = new ArrayList<>();
+        testExercises.add("firstExercise");
+        testExercises.add("secondExercise");
+        
+        ArrayList<ArrayList<TextField>> testData = new ArrayList<>();
+        
+        ArrayList<TextField> firstExSetData = new ArrayList<>();
+        
+        TextField firstExField = new TextField();
+        firstExField.setText("5x100");
+        
+        TextField secondExField = new TextField();
+        secondExField.setText("10x200");
+        
+        firstExSetData.add(firstExField);
+        firstExSetData.add(secondExField);
+        
+        ArrayList<TextField> secondExSetData = new ArrayList<>();
+        
+        firstExField.setText("1x10");
+        secondExField.setText("2x20");
+        
+        secondExSetData.add(firstExField);
+        secondExSetData.add(secondExField);
+        
+        testData.add(firstExSetData);
+        testData.add(secondExSetData);
+        
+        testTrainingLogService.loginUser(testUsername);
+        
+        
+        assertEquals("Log created", testTrainingLogService.createLog(testExercises, testData));
+        
+        assertEquals("Log not created", testTrainingLogService.createLog(testExercises, testData));
+    }
+    
+    @Test
+    public void setDataIsFormattedCorectly() {
+        
+        ArrayList<TextField> firstExSetData = new ArrayList<>();
+        
+        TextField firstExField = new TextField();
+        firstExField.setText("5x100");
+        
+        TextField secondExField = new TextField();
+        secondExField.setText("10x200");
+        
+        firstExSetData.add(firstExField);
+        firstExSetData.add(secondExField);
+        
+        assertEquals("5x100,10x200;", testTrainingLogService.formatSetData(firstExSetData));
+    }
+    
+    @Test
+    public void retrievedLogIsFormattedCorrectly() {
+        
+        Log retrievedLog = new Log(Date.valueOf(LocalDate.now()), "testUser", "ex1:5x40,5x50;ex2:10x100,15x110;");
+        
+        ArrayList<String> formattedData = testTrainingLogService.formatLogForUi(retrievedLog);
+        
+        assertEquals("ex1: 5x40, 5x50", formattedData.get(0));
+        
+        assertEquals("ex2: 10x100, 15x110", formattedData.get(1));
+    }
+    // Log in FakeLogDao: Date.valueOf(LocalDate.now()), "testUser", "firstEx:3x40,4x50,5x60;secondEx:10x100,15x110,20x120;
+    @Test
+    public void searchLogReturnsCorrectlyFormattedArrayList() {
+        ArrayList<String> listToBeReturned = new ArrayList<>();
+        listToBeReturned.add("firstEx: 3x40, 4x50, 5x60");
+        listToBeReturned.add("secondEx: 10x100, 15x110, 20x120");
+        
+        testTrainingLogService.loginUser("searchLogUser");
+        assertEquals(listToBeReturned, testTrainingLogService.searchLog(Date.valueOf(LocalDate.now())));
+    }
 }

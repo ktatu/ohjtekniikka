@@ -32,49 +32,47 @@ public class SQLLogDaoTest {
     
     String database;
     
-    File fakeDatabase;
-    File fakeTrace;
+    static File fakeDatabase;
+    static File fakeTrace;
     
     public SQLLogDaoTest() {
+        testLogDao = new SQLLogDao("testFile");
+        testUsername = "Z84b5mJPQt4";
+        testLog = new Log(Date.valueOf(LocalDate.now()), testUsername, "test:100;");  
+        fakeDatabase = new File("testFile.mv.db");
+        fakeTrace = new File("testFile.trace.db");
     }
     
     @BeforeClass
     public static void setUpClass() {
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:h2:./testFile", "sa", "");
+
+            PreparedStatement stmt = conn.prepareStatement("CREATE TABLE Log (creationDate DATE, username VARCHAR(30), data VARCHAR(150),"
+                + " PRIMARY KEY (creationDate, username));");
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
     @AfterClass
     public static void tearDownClass() {
+        
+        fakeDatabase.delete();
+        fakeTrace.delete();
     }
     
     @Before
     public void setUp() {
         
-        this.fakeDatabase = new File("testFile.mv.db");
-        this.fakeTrace = new File("testFile.trace.db");
-        
-        this.testLogDao = new SQLLogDao("testFile");
-        this.testUsername = "Z84b5mJPQt4";
-        this.testLog = new Log(Date.valueOf(LocalDate.now()), testUsername, "testdatatestdatatestdatatestdata");        
-        
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:./testFile", "sa", "");
-            
-            PreparedStatement stmt = conn.prepareStatement("CREATE TABLE Log (creationDate DATE, username VARCHAR(30), data VARCHAR(150),"
-                    + " PRIMARY KEY (creationDate, username));");
-            stmt.executeUpdate();
-            System.out.println("onnistuu taulun teko");
-            stmt.close();
-            conn.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
     }
     
     @After
     public void tearDown() {
-          
-        this.fakeDatabase.delete();
-        this.fakeTrace.delete();
     }
     
     @Test
@@ -82,15 +80,5 @@ public class SQLLogDaoTest {
         assertTrue(testLogDao.createLog(testLog));
             
         assertFalse(testLogDao.createLog(testLog));
-    }
-
-    @Test
-    public void searchLogReturnsLog() {
-        Log retrievedLog = testLogDao.searchLog(testUsername, Date.valueOf(LocalDate.now()));
-        System.out.println(retrievedLog);
-        
-        assertEquals(retrievedLog.getDate(), testLog.getDate());
-        assertEquals(retrievedLog.getUsername(), testLog.getUsername());
-        assertEquals(retrievedLog.getData(), testLog.getData());
     }
 }

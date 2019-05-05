@@ -11,14 +11,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import traininglog.domain.Log;
 
 /**
- *  Lokeihin liittyvistä toiminnoista vastaava luokka. Käsittelee tietokantatiedostoa "traininglog.mv.db".
+ *  Lokeihin liittyvistä toiminnoista vastaava luokka. Käsittelee config.properties tiedostossa määriteltyä tietokantatiedostoa.
  */
 public class SQLLogDao implements LogDao {
     
@@ -36,9 +32,9 @@ public class SQLLogDao implements LogDao {
      */
     @Override
     public boolean createLog(Log log) {
-        if (searchLog(log.getUsername(), log.getDate()) == null) {
+        if (searchLog(log.getUsername(), log.getDate()).getData() == null) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:h2:./"+database, "sa", "");
+                Connection conn = DriverManager.getConnection("jdbc:h2:./" + database, "sa", "");
                 PreparedStatement stmt = conn.prepareStatement("INSERT INTO Log (creationDate, username, data) VALUES (?, ?, ?)");
                 stmt.setDate(1, log.getDate());
                 stmt.setString(2, log.getUsername());
@@ -65,39 +61,25 @@ public class SQLLogDao implements LogDao {
     @Override
     public Log searchLog(String username, Date creationDate) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:h2:./"+database, "sa", "");
+            Connection conn = DriverManager.getConnection("jdbc:h2:./" + database, "sa", "");
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Log WHERE username = ? AND creationDate = ?");
             stmt.setString(1, username);
             stmt.setDate(2, creationDate);
             ResultSet rs = stmt.executeQuery();
+            Log log = new Log();
             if (rs.next()) {
-                Log log = new Log(rs.getDate("creationDate"), rs.getString("username"), rs.getString("data"));
-                System.out.println(log);
-            //    log.setCreationDate(rs.getDate("creationDate"));
-            //    log.setUsername(rs.getString("username"));
-            //    log.setData(rs.getString("data"));
-                rs.close();
-                stmt.close();
-                conn.close();
-                System.out.println("nyt palautetaan log:");
-                return log;
+                log.setCreationDate(rs.getDate("creationDate"));
+                log.setUsername(rs.getString("username"));
+                log.setData(rs.getString("data"));
             }
             
             rs.close();
             stmt.close();
             conn.close();
-            /*if (log == null) {
-                System.out.println(log.getUsername());
-                System.out.println("log.getusername oli null");
-                return null;
-            }*/
-            return null;
+            
+            return log;
         } catch (SQLException ex) {
-            System.out.println(ex);
             return null;
         }
-    }
-
-
-    
+    }  
 }

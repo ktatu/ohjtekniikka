@@ -26,11 +26,11 @@ public class LogScreen {
     Validation validator = new Validation();
     TrainingLogService trainingLogService;
     
-    // data stored for creating log
+    // listat loki-dataa varten
     ArrayList<ArrayList<TextField>> setData;
     ArrayList<String> exerciseNames;
     
-    // trainingLogService created in TrainingLogUi given to LogScreen
+    // LogScreenille annetaan parametrina main-luokassa luotu trainingLogService
     public LogScreen(TrainingLogService trainingLogService) {
         this.trainingLogService = trainingLogService;
     }
@@ -87,7 +87,7 @@ public class LogScreen {
         });
         createLog.setOnAction((event) -> {
             String outcome = trainingLogService.createLog(exerciseNames, setData);
-            if (outcome.equals("New log created")) {
+            if (outcome.equals("Log created")) {
                 exercises.getChildren().clear();
                 setData.clear();
                 exerciseNames.clear();

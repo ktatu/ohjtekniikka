@@ -125,8 +125,6 @@ public class Validation {
             return "Please select a past date";
         }
         return "";
-    }
-    
-    
+    } 
 }
 
