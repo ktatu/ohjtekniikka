@@ -1,5 +1,7 @@
 # trainingLog
-Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan. Sovellus toimii ikään kuin päiväkirjana - käyttäjä luo treeneistään lokeja joita voi myös etsiä päivämäärän mukaan.
+Sovelluksen avulla käyttäjät voivat pitää kirjaa kuntosaliharjoittelustaan. Sovellus toimii ikään kuin päiväkirjana - käyttäjä luo treeneistään lokeja.
+
+Lokit tunnistetaan päivämäärän perusteella joten käyttäjä voi luoda vain yhden lokin per päivä.
 
 ## Dokumentaatio
 [Käyttöohje](https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kayttoohje.md)
