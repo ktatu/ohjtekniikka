@@ -1,10 +1,14 @@
 # Käyttöohje
 
-Lataa uusimman [releasen](https://github.com/ktatu/ohjtekniikka/releases/tag/viikko6) tiedostot trainingLogApp.jar sekä traininglog.mv.db ja sijoita ne mieleiseesi hakemistoon.
+Lataa uusimman [releasen](https://github.com/ktatu/ohjtekniikka/releases/tag/viikko7) tiedostot trainingLogApp.jar, config.properties sekä traininglog.mv.db ja sijoita ne kaikki samaan suoritushakemistoon.
 
 ## Konfigurointi
 
-Tiedoston traininglog.mv.db tulee sijaita samassa suoritushakemistossa kuin trainingLogApp.jar.
+Sovellus hyödyntää <a href="https://www.h2database.com/html/main.html">h2-tietokantaa</a> lokien paikalliseen tallennukseen. Varmista, että tämä on koneellasi asennettuna.
+
+Java-versiot joilla .jar on testatusti toiminut: 
+- <a href="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/kayttoohje-kuvat/windowsjava.png">Windows 10</a>
+- <a href="https://github.com/ktatu/ohjtekniikka/blob/master/dokumentaatio/kuvat/kayttoohje-kuvat/ubuntujava1.png">Fuksiläppäri Ubuntu 18.04</a>
 
 ## Ohjelman käynnistys
 
